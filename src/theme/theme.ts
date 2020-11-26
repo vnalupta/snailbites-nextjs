@@ -27,10 +27,14 @@ const GlobalTheme = {
     fontWeights: {
         body: 300,
         bold: 500,
+        heading: 700
     },
     lineHeights: {
         body: 1.65,
         heading: 1.15,
+    },
+    fontStyle: {
+        heading: 'italic'
     },
     colors: {
         text: Colors.eggshell,
@@ -39,7 +43,10 @@ const GlobalTheme = {
     },
     text: {
         heading: {
+            fontFamily: 'heading',
             lineHeight: 'heading',
+            fontWeight: 'heading',  
+            fontStyle: 'heading'          
         },
     },
     styles: {
@@ -50,9 +57,10 @@ const GlobalTheme = {
             padding: '0 73px',
         },
         root: {
+            color: 'text',
+            fontFamily: 'body',
             lineHeight: 'body',
             fontWeight: 'body',
-            fontSize: 1
         },
         h1: {
             variant: 'text.heading',
@@ -61,7 +69,7 @@ const GlobalTheme = {
         },
         h2: {
             variant: 'text.heading',
-            fontSize: 5,
+            fontSize: 5,            
         },
         h3: {
             variant: 'text.heading',

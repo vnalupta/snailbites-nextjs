@@ -15,7 +15,7 @@ interface ILayoutProps {
 const Layout: React.FC = ({isFlex, isSpread, width, children}: ILayoutProps) => {
     return (
         <section sx={{
-            varint: 'styles.layout'
+            variant: 'styles.layout'
         }}>            
             {children}            
         </section>

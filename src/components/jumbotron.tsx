@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, Heading } from 'theme-ui'
 
 import React, { useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
@@ -58,7 +58,7 @@ const Crown = ({ inView }: { inView: boolean }) => (
 
 function Title() {
     return (
-        <h1 sx={{
+        <Heading as="h1" sx={{
             textAlign: 'center',
             margin: 0,
             fontSize: ['38px', 6],
@@ -67,7 +67,7 @@ function Title() {
             VINCENT NALUPTA
             <br />
             IS A UX ENGINEER
-        </h1>
+        </Heading>
     )
 }
 
