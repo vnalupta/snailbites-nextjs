@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
  */
 const useIntersectionObserver = (
     ref,
-    { threshold, root, rootMargin }
+    { threshold = 0, root = null, rootMargin = "0%" }
 ) => {
     const [state, setState] = useState({
         inView: false,
@@ -38,9 +38,9 @@ const useIntersectionObserver = (
     
                 return;
             }, {
-                threshold: threshold || 0,
-                root: root || null,
-                rootMargin: rootMargin || "0%"
+                threshold: threshold,
+                root: root ,
+                rootMargin: rootMargin
             }
         )
 

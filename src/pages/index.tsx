@@ -10,6 +10,7 @@ import Head from 'next/head'
 
 import {GlobalTheme } from 'src/theme/theme';
 import Jumbotron from 'src/components/jumbotron';
+import Mountains from 'src/components/mountains';
 
 const Home: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const Home: React.FC = () => {
         <ThemeProvider theme={GlobalTheme}>          
             <header sx={{ overflow: 'hidden'}}>
               <Jumbotron /> 
+              <Mountains />
             </header>          
         </ThemeProvider>
       </main>

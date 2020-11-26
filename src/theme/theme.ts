@@ -3,7 +3,7 @@ const font = {
     family: "Poppins",
 };
 
-const colors = {
+const Colors = {
     sesame: '#202020',
     plum: '#4F1C48',
     ocean: '#304A81',
@@ -33,9 +33,9 @@ const GlobalTheme = {
         heading: 1.15,
     },
     colors: {
-        text: colors.eggshell,
-        background: colors.sesame,
-        primary: colors.neon,
+        text: Colors.eggshell,
+        background: Colors.sesame,
+        primary: Colors.neon,
     },
     text: {
         heading: {
@@ -86,10 +86,10 @@ const GlobalTheme = {
 const BlogTheme = {
     ...GlobalTheme,
     colors: {
-        text: colors.sesame,
-        background: colors.eggshell,
-        primary: colors.plum
+        text: Colors.sesame,
+        background: Colors.eggshell,
+        primary: Colors.plum
     },
 }
 
-export { GlobalTheme, BlogTheme };
+export { GlobalTheme, BlogTheme, Colors };
