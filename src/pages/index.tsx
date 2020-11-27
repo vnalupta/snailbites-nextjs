@@ -8,12 +8,13 @@ import Head from 'next/head'
 // import Layout from '../components/layout'
 // import Footer from '../components/footer'
 
-import { Colors, GlobalTheme } from 'src/theme/theme';
-import Jumbotron from 'src/components/jumbotron';
-import Mountains from 'src/components/mountains';
-import Button from 'src/components/button';
-import Bio from 'src/components/bio';
-import Gradient from 'src/components/gradient';
+import { Colors, GlobalTheme } from '../theme/theme';
+import Jumbotron from '../../src/components/jumbotron';
+import Mountains from '../../src/components/mountains';
+import Button from '../../src/components/button';
+import Bio from '../../src/components/bio';
+import Gradient from '../../src/components/gradient';
+import Work from '../components/work';
 
 const Home: React.FC = () => {
   return (
@@ -31,10 +32,8 @@ const Home: React.FC = () => {
           backgroundColor: `${Colors.ocean}`
         }}>
           <Bio />
-          <Spacer />
-          {/* 
-            <Work />            
-            */}
+          <Spacer />          
+          <Work />                       
           <Spacer />
           <Gradient />    
         </main>

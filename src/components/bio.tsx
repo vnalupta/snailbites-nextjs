@@ -63,7 +63,7 @@ function Bio() {
 
                 {/* <Link> */}
                 {/* // to={`/blog/${data.link.fields.slug}`}> */}
-                <Button sx={{
+                <Button flavor="default" sx={{
                     '@media (max-width: 768px)': {
                         margin: '0 auto'
                     }
