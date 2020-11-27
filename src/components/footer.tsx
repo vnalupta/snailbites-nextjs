@@ -2,6 +2,7 @@
 import { jsx } from 'theme-ui'
 
 import React from "react"
+import { Colors } from '../theme/theme';
 // import FlexContainer from "./flexContainer"
 // import Social from "../components/social"
 // import BlogFeed from "./blogFeed"
@@ -9,18 +10,30 @@ import React from "react"
 // import styled from "styled-components"
 // import { Colors } from "../theme/global"
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<{
+    showBlog: boolean,
+    showSocial: boolean,
+    backgroundColor: string
+}> = ({ showBlog, showSocial, backgroundColor = `${Colors.plum}` }) => {    
     return (
-        <footer>
-            {/* <FlexContainer flex spread css={`justify-content: space-between;`}> */}
+        <footer sx={{
+            overflow: 'hidden',
+            padding: '1em 0',
+            color: `${Colors.eggshell}`,
+            backgroundColor: `${backgroundColor}`
+        }}>
+            <div sx={{ 
+                variant: 'layout',
+                justifyContent: 'space-between' 
+            }}>
                 {/* Fixes zindex bug with mountain SVG above it */}
                 <section 
                     sx={{
                         zIndex: 10,
-                        position: 'relative'
+                        position: 'relative',                        
                     }}
                 >
-                    {/* {location === '/' && <BlogFeed />} */}
+                    {/* {showBlog && <BlogFeed />} */}
                     <p sx={{ variant: 'styles.small' }}>This site was made with {" "}
                         <a
                             // css={`
@@ -45,12 +58,13 @@ export const Footer: React.FC = () => {
                         </a>
                         {" "}and ❤️
                     </p>
-                    <p className="small" sx={{ transform: 'translateY(-1em)'}}>
+                    <p                         
+                        sx={{ variant: 'styles.small', transform: 'translateY(-1em)'}}>
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
-                {/* {location === '/' && <Social location={location} />}
-            {/* </FlexContainer> */}
+                {/* {showSocial && <Social location={location} />} */}
+            </div>
         </footer>
     ) 
 }

@@ -103,8 +103,7 @@ const Work = () => {
     }, [inView])
 
     /**
-     * Click handler for project selector 
-     *
+     * Click handler for project selector      
      * @param {*} item     
      */
     function handleClick(item) {

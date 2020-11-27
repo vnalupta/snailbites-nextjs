@@ -15,6 +15,7 @@ import Button from '../../src/components/button';
 import Bio from '../../src/components/bio';
 import Gradient from '../../src/components/gradient';
 import Work from '../components/work';
+import Footer from '../components/footer';
 
 const Home: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
           <Work />                       
           <Spacer />
           <Gradient />    
+          <Footer />
         </main>
       </div>
     </ThemeProvider>
