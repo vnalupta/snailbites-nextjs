@@ -13,7 +13,7 @@ const Button: React.FC<{
     flavor: 'default' | 'link',
     selected?: boolean,
     onClick?: (e) => void
-}> = ({ children, flavor, selected }) => {
+}> = ({ children, flavor, selected, onClick }) => {
 
     const defaultStyles = {
         display: 'block',
@@ -55,7 +55,10 @@ const Button: React.FC<{
     let styles = flavor === 'link' ? linkStyles : defaultStyles;
 
     return (
-        <button type="button" sx={styles}>
+        <button 
+            type="button" 
+            sx={styles}
+            onClick={onClick}>
             {children}
         </button>
     )

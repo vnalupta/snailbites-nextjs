@@ -14,31 +14,32 @@ export const Footer: React.FC<{
     showBlog: boolean,
     showSocial: boolean,
     backgroundColor: string
-}> = ({ showBlog, showSocial, backgroundColor = `${Colors.plum}` }) => {    
+}> = ({ showBlog, showSocial, backgroundColor = `${Colors.plum}` }) => {
     return (
         <footer sx={{
             overflow: 'hidden',
             padding: '1em 0',
             color: `${Colors.eggshell}`,
-            backgroundColor: `${backgroundColor}`
+            backgroundColor: `${backgroundColor}`,
+            '& a': {
+                color: `${Colors.neon}`,
+                textDecoration: 'none'
+            }
         }}>
-            <div sx={{ 
-                variant: 'layout',
-                justifyContent: 'space-between' 
+            <div sx={{
+                variant: 'styles.layout',
+                justifyContent: 'space-between'
             }}>
                 {/* Fixes zindex bug with mountain SVG above it */}
-                <section 
+                <section
                     sx={{
                         zIndex: 10,
-                        position: 'relative',                        
+                        position: 'relative',
                     }}
                 >
                     {/* {showBlog && <BlogFeed />} */}
                     <p sx={{ variant: 'styles.small' }}>This site was made with {" "}
                         <a
-                            // css={`
-                            //     color: ${Colors.neon};
-                            // `}
                             href="https://nextjs.org/learn"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -47,9 +48,6 @@ export const Footer: React.FC<{
                         </a>
                         ,{" "}
                         <a
-                            // css={`
-                            //     color: ${Colors.neon};
-                            // `}
                             href="https://www.sketch.com/"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -58,29 +56,15 @@ export const Footer: React.FC<{
                         </a>
                         {" "}and ❤️
                     </p>
-                    <p                         
-                        sx={{ variant: 'styles.small', transform: 'translateY(-1em)'}}>
+                    <p
+                        sx={{ variant: 'styles.small', transform: 'translateY(-1em)' }}>
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
                 {/* {showSocial && <Social location={location} />} */}
             </div>
         </footer>
-    ) 
+    )
 }
-
-// const StyledFooter = styled.footer`
-//     overflow: hidden;
-//     background-color: ${props => props.location !== "/"
-//         ? Colors.sesame
-//         : Colors.plum};
-//     padding: 1em 0;
-//     color: ${Colors.eggshell};
-
-//     & a {
-//         color: ${Colors.neon};
-//         text-decoration: none;
-//     }
-// `
 
 export default Footer
