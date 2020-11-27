@@ -1,0 +1,13 @@
+@import "./normalize.css";
+
+/**
+ * Animations
+ **/
+@keyframes moveHorizontal {
+    from { 
+        transform: translate(10vw, 22vh);
+    }
+    to {
+        transform: translate(15vw, 22vh);
+    }
+}

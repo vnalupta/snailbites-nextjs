@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading } from 'theme-ui'
+import { jsx, Link as A } from 'theme-ui'
 
 import React, { FunctionComponent, MutableRefObject, ReactChildren, useRef } from "react"
 // import styled from "styled-components"
@@ -38,19 +38,20 @@ function Bio() {
                     src="/images/profile.png"
                     alt="Vincent Nalupta's shadow against some subway tiles."
                     width={240}
-                    height={320} />                
+                    height={320} />
             </Column>
             <Column rhs ref={bioRef} inView={true}>
-                <Heading as="h2" sx={{
-                    marginBottom: '10px'
-                }}>
+                <h2 sx={{
+                        variant: 'styles.h2',
+                        marginBottom: '10px'
+                    }}>
                     HELLO!
-                        </Heading>
+                </h2>
                 <p>
                     My name is Vincent Nalupta and I am currently an Engineering Manager at Grubhub.
                         </p>
                 <p>
-                    I've won some <a href="https://www.commarts.com/webpicks/timothy-goodman" target="_blank" rel="noopener noreferrer">awards</a> for my work and some <a href="https://twitter.com/snailbites/status/917875803983147008" target="_blank" rel="noopener noreferrer">giant pencils</a> for my <a href="https://cssdevconf2016.sched.com/vnalupta" target="_blank" rel="noopener noreferrer">talks</a>.
+                    I've won some <A href="https://www.commarts.com/webpicks/timothy-goodman" target="_blank" rel="noopener noreferrer">awards</A> for my work and some <A href="https://twitter.com/snailbites/status/917875803983147008" target="_blank" rel="noopener noreferrer">giant pencils</A> for my <A href="https://cssdevconf2016.sched.com/vnalupta" target="_blank" rel="noopener noreferrer">talks</A>.
                         </p>
                 <p
                     sx={{
@@ -101,10 +102,10 @@ const Column: FunctionComponent<{
     let styles = {
         ...base,
         ...(rhs ? {
-                transform: 'translateX(10px)',
-                opacity: 0,
-                transition: '250ms ease-in',
-            } : {
+            transform: 'translateX(10px)',
+            opacity: 0,
+            transition: '250ms ease-in',
+        } : {
                 paddingRight: '50px',
                 '@media (max-width: 768px)': {
                     display: 'none'

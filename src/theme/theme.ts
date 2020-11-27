@@ -18,7 +18,6 @@ const Colors = {
 
 const GlobalTheme = {
     breakpoints: ['33.75em', '48em', '68.75em'],
-    // space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
     fonts: {
         body: `${font.family}, sans-serif`,
         heading: 'inherit',
@@ -68,8 +67,8 @@ const GlobalTheme = {
             lineHeight: '3.125rem'
         },
         h2: {
-            variant: 'text.heading',
             fontSize: 5,            
+            variant: 'text.heading',            
         },
         h3: {
             variant: 'text.heading',
@@ -87,7 +86,11 @@ const GlobalTheme = {
             fontSize: 0,
         },
         a: {
-            color: 'primary'
+            color: 'primary',
+            'transition': '150ms ease-out',
+            '&:hover': {
+                opacity: .85
+              }            
         },
     }
 }

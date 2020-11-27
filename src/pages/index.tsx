@@ -8,37 +8,38 @@ import Head from 'next/head'
 // import Layout from '../components/layout'
 // import Footer from '../components/footer'
 
-import { GlobalTheme } from 'src/theme/theme';
+import { Colors, GlobalTheme } from 'src/theme/theme';
 import Jumbotron from 'src/components/jumbotron';
 import Mountains from 'src/components/mountains';
 import Button from 'src/components/button';
 import Bio from 'src/components/bio';
+import Gradient from 'src/components/gradient';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <ThemeProvider theme={GlobalTheme}>
-          <header sx={{ overflow: 'hidden' }}>
-            <Jumbotron />
-            <Mountains />
-          </header>
+    <ThemeProvider theme={GlobalTheme}>
+      <div>
+        <Head>
+          <title>Create Next App</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <header sx={{ overflow: 'hidden' }}>
+          <Jumbotron />
+          <Mountains />
+        </header>
+        <main sx={{
+          backgroundColor: `${Colors.ocean}`
+        }}>
           <Bio />
           <Spacer />
           {/* 
             <Work />            
             */}
           <Spacer />
-
-          {/* <Gradient />     */}
-        </ThemeProvider>
-      </main>
-    </div>
+          <Gradient />    
+        </main>
+      </div>
+    </ThemeProvider>
   )
 }
 
