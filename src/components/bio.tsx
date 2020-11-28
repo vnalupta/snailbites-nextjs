@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Link as A } from 'theme-ui'
 
-import React, { FunctionComponent, MutableRefObject, ReactChildren, useRef } from "react"
+import React, { forwardRef, FunctionComponent, MutableRefObject, ReactChildren, useRef } from "react"
 // import styled from "styled-components"
 // import { graphql, StaticQuery } from "gatsby"
 
@@ -21,7 +21,7 @@ function Bio() {
     })
 
     return (
-        <section sx={{
+        <section  sx={{
             variant: 'styles.layout'
         }}>
             <Column>
@@ -40,8 +40,8 @@ function Bio() {
                     width={240}
                     height={320} />
             </Column>
-            <Column rhs ref={bioRef} inView={true}>
-                <h2 sx={{
+            <Column rhs={true} inView={inView}>
+                <h2 ref={bioRef} sx={{
                         variant: 'styles.h2',
                         marginBottom: '10px'
                     }}>
@@ -74,8 +74,7 @@ function Bio() {
     )
 }
 
-const Column: FunctionComponent<{
-    ref?: MutableRefObject<HTMLDivElement>,
+const Column: FunctionComponent<{    
     rhs?: boolean,
     inView?: boolean,
     children: any
@@ -84,20 +83,6 @@ const Column: FunctionComponent<{
         maxWidth: '300px',
         alignSelf: 'flex-end',
     }
-
-    /*
-    ? {
-                transform: 'translateX(10px)',
-                opacity: 0,
-                transition: '250ms ease-in'
-            } : {
-                position: 'relative',
-                paddingRight: '50px',            
-                '@media (max-width: 768px)' : {
-                    display: 'none'
-                }
-            }
-            */
 
     let styles = {
         ...base,
@@ -123,18 +108,6 @@ const Column: FunctionComponent<{
             {children}
         </div>
     )
-
-    //     ${props => props.rhs && `
-    //     transform: translateX(10px);
-    //     opacity: 0;
-    //     transition: 250ms ease-in;
-    // `}
-
-    // ${props => props.rhs && props.visible && `
-    //     transform: translateX(0);
-    //     opacity: 1;
-    // `}
-
 }
 // const Profile = styled(BioColumn)`
 //     position: relative;

@@ -83,29 +83,36 @@ const projects = [
     }
 ]
 
-const FADE_TIMING = 450;
+const FADE_TIMING = 350;
 
 const Work = () => {
     const [project, setProject] = useState(null)
     const [loading, setLoading] = useState(true)
     const [open, setDrawer] = useState(false)
 
+    // intersection
     const figureRef = useRef(null);
     const [inView] = useIntersectionObserver(figureRef, {
         threshold: .5
     })
 
+    // TODO: this should handle itself as a side effect
+    // of projects being set
     useEffect(() => {
         setProject(projects[0])
         if (inView) {
-            setLoading(false);
-            setDrawer(true);
+            setTimeout(() => {
+                setLoading(false);
+                setDrawer(true);
+            }, 100)
         }
     }, [inView])
 
     /**
-     * Click handler for project selector      
+     * Click handler for project selector  
+     *     
      * @param {*} item     
+     * @summary Sets loading state and begins fade animations     
      */
     function handleClick(item) {
         if (item.shortname === project.shortname) {
@@ -113,6 +120,7 @@ const Work = () => {
         }
 
         let start;
+        let id;
         const tick = timestamp => {
             if (!start) {
                 start = timestamp;
@@ -122,14 +130,21 @@ const Work = () => {
                 window.requestAnimationFrame(tick)
             } else {
                 setProject(item);
-                setLoading(false);
-                setDrawer(true);
+
+                // This is firing too fast; see comment in useEffect
+                setTimeout(() => {
+                    setLoading(false);
+                    setDrawer(true);
+                }, 100)
+
+                window.cancelAnimationFrame(id);
             }
         }
 
         setLoading(true);
         setDrawer(false);
-        window.requestAnimationFrame(tick)
+
+        id = window.requestAnimationFrame(tick)
     }
 
     return (
@@ -221,9 +236,13 @@ const Work = () => {
                         }}>
                             {project && (
                                 <>
-                                    <div sx={{
+                                    <div className={loading ? 'loading' : null} sx={{
+
                                         transition: `opacity ${FADE_TIMING}ms ease-out`,
-                                        opacity: `${loading ? 0 : 1}`,
+                                        opacity: 1,
+                                        '&.loading': {
+                                            opacity: 0
+                                        }
                                     }}>
                                         <Image
                                             src={`/images/screenshots/${project.shortname}.png`}
@@ -244,14 +263,14 @@ const Work = () => {
 
                                         transition: `bottom ${FADE_TIMING}ms ease-out`,
                                         bottom: `${open ? 0 : '-200px'}`,
-                                        
+
                                         variant: 'styles.small'
                                     }}>
                                         {project.caption}<br />
                                         {project.url && ` `}
                                         {project.url && (
-                                            <A href={project.url}                                                 
-                                                rel="noopener noreferrer" 
+                                            <A href={project.url}
+                                                rel="noopener noreferrer"
                                                 target="_blank">
                                                 {project.link ? project.link : 'Link'} &rarr;
                                             </A>
@@ -266,60 +285,5 @@ const Work = () => {
         </>
     )
 }
-
-
-// const StyledFigureWrapper = styled.div`
-//   // default computed <figure> styles
-//   margin-block-start: 1em;
-//   margin-block-end: 1em;
-//   margin-inline-start: 40px;
-//   margin-inline-end: 40px;
-
-//   flex: none;
-
-//   @media (min-width: 1100px) {
-//     flex: 0 0 630px;    
-//   }  
-
-//   position: relative;
-//   width: 630px;
-//   height: 490px;
-
-//   background: url(${imac}) no-repeat 0 0;
-// `
-
-// const StyledFigure = styled.figure`
-//   margin: 0;
-//   position: absolute;
-//   top: 26px;
-//   left: 25px;
-//   width: 580px;
-//   height: 333px;
-//   overflow: hidden;
-// `
-
-// const StyledScreenshot = styled.div`  
-//   transition: opacity ${FADE_TIMING}ms ease-out;
-//   opacity: 1;  
-//   &.loading {
-//     opacity: 0;
-//   }
-// `
-
-// const StyledCaption = styled.figcaption`
-//   position: absolute;      
-//   margin: 0;
-//   padding: 10px;
-
-//   background-color: ${Colors.sesame};
-
-//   & a {
-//     text-decoration: none;
-//   }
-
-//   transition bottom ${FADE_TIMING}ms ease-out;  
-//   bottom: 0;
-//   bottom: ${props => props.open ? 0 : `-200px`}
-// `;
 
 export default Work;

@@ -27,7 +27,7 @@ const useIntersectionObserver = (
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries, observerInstance) => {
-                if (entries[0].intersectionRatio > 0) {                
+                if (entries[0].intersectionRatio > 0) {                              
                     setState({
                         inView: true,
                         triggered: true,

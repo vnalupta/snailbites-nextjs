@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 import React, { ReactChild } from "react"
 
-import { Colors } from 'src/theme/theme'
+import { Colors } from '../theme/theme'
 
 const Mountains = () => (
     <section sx={{
