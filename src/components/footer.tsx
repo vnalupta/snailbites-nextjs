@@ -3,6 +3,7 @@ import { jsx } from 'theme-ui'
 
 import React from "react"
 import { Colors } from '../theme/theme';
+import Social from './social';
 // import FlexContainer from "./flexContainer"
 // import Social from "../components/social"
 // import BlogFeed from "./blogFeed"
@@ -13,7 +14,7 @@ import { Colors } from '../theme/theme';
 export const Footer: React.FC<{
     showBlog: boolean,
     showSocial: boolean,
-    backgroundColor: string
+    backgroundColor?: string
 }> = ({ showBlog, showSocial, backgroundColor = `${Colors.plum}` }) => {
     return (
         <footer sx={{
@@ -61,7 +62,7 @@ export const Footer: React.FC<{
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
-                {/* {showSocial && <Social location={location} />} */}
+                {showSocial && <Social useLightTheme={false} />}
             </div>
         </footer>
     )

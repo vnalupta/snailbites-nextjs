@@ -1,9 +1,14 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { AppProps } from "next/app";
 import '../theme/styles.scss';
+import Layout from "../components/layout";
 
-const SnailbitesApp = ({ Component, pageProps }: AppProps): ReactElement => {
-  return <Component {...pageProps} />
+const SnailbitesApp = ({ Component, pageProps, router }: AppProps) => {
+  return (
+    <Layout route={router.route}>
+      <Component {...pageProps} key={router.route} />
+    </Layout>
+  )
 }
 
 export default SnailbitesApp

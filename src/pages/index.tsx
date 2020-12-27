@@ -2,45 +2,59 @@
 import { jsx } from 'theme-ui'
 import { ThemeProvider } from 'theme-ui'
 
-import React, { useEffect } from 'react';
+import React, { ReactChild, useEffect } from 'react';
 import Head from 'next/head'
 
-// import Layout from '../components/layout'
-// import Footer from '../components/footer'
-
-import { Colors, GlobalTheme } from '../theme/theme';
-import Jumbotron from '../../src/components/jumbotron';
-import Mountains from '../../src/components/mountains';
-import Button from '../../src/components/button';
-import Bio from '../../src/components/bio';
-import Gradient from '../../src/components/gradient';
-import Work from '../components/work';
-import Footer from '../components/footer';
+import { Colors, GlobalTheme } from '@/theme/theme';
+import Jumbotron from '@/components/jumbotron';
+import Mountains from '@/components//mountains';
+import Bio from '@/components//bio';
+import Gradient from '@/components//gradient';
+import Work from '@/components//work';
+import Footer from '@/components//footer';
 
 const Home: React.FC = () => {
   return (
     <ThemeProvider theme={GlobalTheme}>
-      <div>
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <header sx={{ overflow: 'hidden' }}>
-          <Jumbotron />
-          <Mountains />
-        </header>
-        <main sx={{
-          backgroundColor: `${Colors.ocean}`
-        }}>
-          <Bio />
-          <Spacer />          
-          <Work />                       
-          <Spacer />
-          <Gradient />    
-          <Footer />
-        </main>
-      </div>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header>
+        <Jumbotron />
+        <Mountains />
+      </Header>
+      <Main>
+        <Bio />
+        <Spacer />          
+        <Work />                       
+        <Spacer />
+        <Gradient />    
+        <Footer showBlog showSocial />
+      </Main>
     </ThemeProvider>
+  )
+}
+
+/**
+ * Wrapper for Main
+ * @param children 
+ */
+function Main({children}:{children: ReactChild|ReactChild[]}) {
+  return (
+    <main role="main" sx={{
+      backgroundColor: `${Colors.ocean}`
+    }}>{children}</main>
+  )
+}
+
+/**
+ * Wrapper for header
+ * @param children
+ */
+function Header({children}:{children: ReactChild|ReactChild[]}) {
+  return (
+    <header sx={{ overflow: 'hidden' }}>{children}</header>
   )
 }
 

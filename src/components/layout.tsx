@@ -1,39 +1,36 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, ThemeProvider } from 'theme-ui'
 
-import React, { ReactChild } from "react";
+import React, { ReactChild, useEffect, useState } from "react";
 import Navbar from "./navbar"
 import Footer from "./footer"
+import Head from 'next/head';
+import { BlogTheme, GlobalTheme } from '../theme/theme';
 
 interface ILayoutProps {
-    isFlex?: boolean;
-    isSpread?: boolean;
-    width?: number;
-    children: ReactChild;
+    children: ReactChild | ReactChild[];
+    route: string;
 }
 
-const Layout: React.FC = ({isFlex, isSpread, width, children}: ILayoutProps) => {
+const Layout: React.FC<ILayoutProps> = ({children, route}) => {
+    const [theme, setTheme] = useState(GlobalTheme);
+
+    useEffect(() => {
+        const theme = route === '/' ? GlobalTheme : BlogTheme
+        setTheme(theme)
+    }, [route])
+    
     return (
-        <section sx={{
-            variant: 'styles.layout'
-        }}>            
-            {children}            
-        </section>
+        <>
+            <ThemeProvider theme={theme}>
+                <Head>
+                    <title>Create Next App</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                {children}
+            </ThemeProvider>
+        </>
     )
 }
 
 export default Layout;
-
-/*
-    ${props => props.props.flex && `display: flex;`}    
-    justify-content: ${props => props.props.spread ? `space-between` : `center`};
-    ${props =>
-        props.props.width &&
-        `max-width: ${props.props.width};`}
-    margin: 0 auto;
-    padding: 0 73px;
-
-    @media (max-width: 540px) {
-        padding: 0 25px;
-    }
-*/

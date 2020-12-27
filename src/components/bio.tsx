@@ -1,18 +1,12 @@
 /** @jsx jsx */
 import { jsx, Link as A } from 'theme-ui'
 
-import React, { forwardRef, FunctionComponent, MutableRefObject, ReactChildren, useRef } from "react"
-// import styled from "styled-components"
-// import { graphql, StaticQuery } from "gatsby"
-
-// import FlexContainer from "./flexContainer"
-// import { FadeLink } from "./transition"
-
+import React, { FunctionComponent, useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import Button from "./button"
-// import Link from "next/link";
 import Image from "next/image";
-
+import Link from 'next/link';
+// import Link from "next/link";
 
 function Bio() {
     const bioRef = useRef(null);
@@ -61,6 +55,12 @@ function Bio() {
                     This is my space to flex my design chops and write about interesting tech.
                         </p>
 
+                        <Link href="/">
+                            <a>Link To Home</a>
+                        </Link>
+                        <Link href="/blog">
+                            <a>Link To CV</a>
+                        </Link>
                 {/* <Link> */}
                 {/* // to={`/blog/${data.link.fields.slug}`}> */}
                 <Button flavor="default" sx={{
@@ -109,14 +109,6 @@ const Column: FunctionComponent<{
         </div>
     )
 }
-// const Profile = styled(BioColumn)`
-//     position: relative;
-//     padding-right: 50px;
-
-//     @media (max-width: 768px) {
-//         display: none;
-//     }
-// `
 
 const BioBg = () => (
     <svg viewBox="0 0 435 490" xmlns="http://www.w3.org/2000/svg">
@@ -136,23 +128,5 @@ const BioBg = () => (
         </g>
     </svg>
 )
-
-
-// const bioQuery = graphql`
-//     query BioQuery {
-//         profile: file(absolutePath: { regex: "images/profile.png/" }) {
-//             childImageSharp {
-//                 fixed(width: 240, height: 320) {
-//                     ...GatsbyImageSharpFixed
-//                 }
-//             }
-//         },
-//         link: markdownRemark(fields: {slug: {eq: "redesign"}}) {
-//             fields {
-//               slug
-//             }
-//           }
-//     }
-// `
 
 export default Bio
