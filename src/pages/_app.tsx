@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 
 const SnailbitesApp = ({ Component, pageProps, router }: AppProps) => {
   return (
-    <Layout route={router.route}>
+    <Layout>
       <Component {...pageProps} key={router.route} />
     </Layout>
   )

@@ -1,5 +1,10 @@
 @import "./normalize.css";
 
+body {
+    overflow-x: hidden;
+    transition: all 200ms ease-in-out
+}
+
 /**
  * Animations
  **/

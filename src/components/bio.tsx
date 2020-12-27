@@ -55,12 +55,7 @@ function Bio() {
                     This is my space to flex my design chops and write about interesting tech.
                         </p>
 
-                        <Link href="/">
-                            <a>Link To Home</a>
-                        </Link>
-                        <Link href="/blog">
-                            <a>Link To CV</a>
-                        </Link>
+    
                 {/* <Link> */}
                 {/* // to={`/blog/${data.link.fields.slug}`}> */}
                 <Button flavor="default" sx={{

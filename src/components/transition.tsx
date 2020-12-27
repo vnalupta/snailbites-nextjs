@@ -1,28 +1,88 @@
-import React from "react";
-// import TransitionLink from 'gatsby-plugin-transition-link'
+import { isAbsolute, relative } from "path";
+import React, { useEffect, useState } from "react";
+import {
+    TransitionGroup,
+    Transition as ReactTransition,
+} from "react-transition-group"
+import { ThemeProvider } from "theme-ui";
+import { GlobalTheme, BlogTheme } from '@/theme/theme';
+import { useRouter } from "next/router";
+import { Colors } from "../theme/theme";
 
-const duration = 150;
+const DURATION = 200;
 
 const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in`,
-  opacity: 0,
+    transition: `opacity ${DURATION}ms ease-in`,
+    opacity: 0,
 }
 
-const transitionStyles = {
-  entered:  { opacity: 1 },
-  exited:  { opacity: 0 },
-};
+const getTransitionStyles = {
+    entering: {
+        position: `absolute`,
+        opacity: 0,
+    },
+    entered: {
+        transition: `opacity ${DURATION}ms ease-in-out`,
+        opacity: 1,
+    },
+    exiting: {
+        transition: `opacity ${DURATION}ms ease-in-out`, 
+        opacity: 0,
+    }
+}
 
-const FadeProvider = props => {
+const Transition = ({ children, location }) => {
+    const router = useRouter();
+    const [theme, setTheme] = useState(GlobalTheme);
+
+    useEffect(() => {
+        // The location is one state behind
+        // so that's why this is backwards
+        const theme = location === '/' ? GlobalTheme : BlogTheme     
+        setTheme(theme)     
+    }, [])
+
     return (
-        <div style={{
-            ...defaultStyle,
-            ...transitionStyles[props.status]
-          }}>{props.children}</div>
+        <TransitionGroup style={{ position: `relative` }}>
+            <ReactTransition
+                key={router.pathname}
+                timeout={DURATION}
+                onExited={() => {
+                    // The location is one state behind
+                    // so that's why this is backwards
+                    const currTheme = location !== '/' ? GlobalTheme : BlogTheme;
+                    setTheme(currTheme);                    
+                }}                
+            >
+                {status => {
+                    return (
+                        <div
+                            style={{
+                                ...defaultStyle,
+                                ...getTransitionStyles[status],
+                            }}
+                        >
+                            <ThemeProvider theme={theme}>
+                                {children}
+                            </ThemeProvider>
+                        </div>
+                    )
+                }}
+            </ReactTransition>
+        </TransitionGroup>
     )
 }
 
+export default Transition;
 
+// const FadeProvider = props => {
+//     return (
+//         <div style={{
+//             ...defaultStyle,
+//             ...transitionStyles[props.status]
+//           }}>{props.children}</div>
+//     )
+// }
 
 // const FadeLink = props => {
 //     const target = props.target || null
@@ -45,7 +105,3 @@ const FadeProvider = props => {
 //         </TransitionLink>
 //     )
 // }
-
-export {    
-    FadeProvider
-}

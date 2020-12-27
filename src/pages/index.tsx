@@ -2,25 +2,25 @@
 import { jsx } from 'theme-ui'
 import { ThemeProvider } from 'theme-ui'
 
-import React, { ReactChild, useEffect } from 'react';
-import Head from 'next/head'
+import React, { ReactChild } from 'react';
 
 import { Colors, GlobalTheme } from '@/theme/theme';
 import Jumbotron from '@/components/jumbotron';
-import Mountains from '@/components//mountains';
-import Bio from '@/components//bio';
-import Gradient from '@/components//gradient';
-import Work from '@/components//work';
-import Footer from '@/components//footer';
+import Mountains from '@/components/mountains';
+import Bio from '@/components/bio';
+import Gradient from '@/components/gradient';
+import Work from '@/components/work';
+import Footer from '@/components/footer';
+import Link from 'next/link';
 
 const Home: React.FC = () => {
   return (
-    <ThemeProvider theme={GlobalTheme}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header>
+    <>
+                        
+                        <Link href="/blog" shallow>
+                            <a>Link To blog</a>
+                        </Link>
+      <Header style={{overflow: `hidden`}}>
         <Jumbotron />
         <Mountains />
       </Header>
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
         <Gradient />    
         <Footer showBlog showSocial />
       </Main>
-    </ThemeProvider>
+    </>
   )
 }
 

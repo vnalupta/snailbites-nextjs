@@ -96,11 +96,11 @@ const GlobalTheme = {
 }
 const BlogTheme = {
     ...GlobalTheme,
-    colors: {
-        text: Colors.sesame,
-        background: Colors.eggshell,
-        primary: Colors.plum
-    },
+    // colors: {
+    //     text: Colors.sesame,
+    //     background: Colors.eggshell,
+    //     primary: Colors.plum
+    // },
 }
 
 export { GlobalTheme, BlogTheme, Colors };
