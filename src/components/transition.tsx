@@ -1,11 +1,10 @@
-import { isAbsolute, relative } from "path";
 import React, { useEffect, useState } from "react";
 import {
     TransitionGroup,
     Transition as ReactTransition,
 } from "react-transition-group"
 import { ThemeProvider } from "theme-ui";
-import { GlobalTheme, BlogTheme } from '@/theme/theme';
+import { GlobalTheme, BlogTheme } from '@theme/theme';
 import { useRouter } from "next/router";
 import { Colors } from "../theme/theme";
 
@@ -16,17 +15,15 @@ const defaultStyle = {
     opacity: 0,
 }
 
-const getTransitionStyles = {
+const transitionStyles = {
     entering: {
         position: `absolute`,
         opacity: 0,
     },
     entered: {
-        transition: `opacity ${DURATION}ms ease-in-out`,
         opacity: 1,
     },
     exiting: {
-        transition: `opacity ${DURATION}ms ease-in-out`, 
         opacity: 0,
     }
 }
@@ -59,7 +56,7 @@ const Transition = ({ children, location }) => {
                         <div
                             style={{
                                 ...defaultStyle,
-                                ...getTransitionStyles[status],
+                                ...transitionStyles[status],
                             }}
                         >
                             <ThemeProvider theme={theme}>

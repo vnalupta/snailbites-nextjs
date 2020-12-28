@@ -4,22 +4,18 @@ import { ThemeProvider } from 'theme-ui'
 
 import React, { ReactChild } from 'react';
 
-import { Colors, GlobalTheme } from '@/theme/theme';
-import Jumbotron from '@/components/jumbotron';
-import Mountains from '@/components/mountains';
-import Bio from '@/components/bio';
-import Gradient from '@/components/gradient';
-import Work from '@/components/work';
-import Footer from '@/components/footer';
+import { Colors, GlobalTheme } from '@theme/theme';
+import Jumbotron from '@components/jumbotron';
+import Mountains from '@components/mountains';
+import Bio from '@components/bio';
+import Gradient from '@components/gradient';
+import Work from '@components/work';
+import Footer from '@components/footer';
 import Link from 'next/link';
 
 const Home: React.FC = () => {
   return (
     <>
-                        
-                        <Link href="/blog" shallow>
-                            <a>Link To blog</a>
-                        </Link>
       <Header style={{overflow: `hidden`}}>
         <Jumbotron />
         <Mountains />
@@ -52,7 +48,7 @@ function Main({children}:{children: ReactChild|ReactChild[]}) {
  * Wrapper for header
  * @param children
  */
-function Header({children}:{children: ReactChild|ReactChild[]}) {
+function Header({style, children}:{style: any, children: ReactChild|ReactChild[]}) {
   return (
     <header sx={{ overflow: 'hidden' }}>{children}</header>
   )

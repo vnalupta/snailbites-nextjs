@@ -4,8 +4,8 @@ import { jsx, ThemeProvider } from 'theme-ui'
 import React, { ReactChild, useEffect, useState } from "react";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Transition from '@/components/transition'
-import { BlogTheme, GlobalTheme } from '@/theme/theme';
+import Transition from '@components/transition'
+import { BlogTheme, GlobalTheme } from '@theme/theme';
 
 
 interface ILayoutProps {
@@ -13,16 +13,8 @@ interface ILayoutProps {
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
-    // const [theme, setTheme] = useState(GlobalTheme);
     const router = useRouter();
 
-    useEffect(() => {
-        // const theme = route === '/' ? GlobalTheme : BlogTheme
-        // setTimeout(() => setTheme(theme), 200)        
-        // console.log('here')
-    }, [router.route])
-
-    
     return (
         <div>
             <Head>
@@ -30,9 +22,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Transition location={router.pathname}>
-                {/* <ThemeProvider theme={theme}> */}
-                    {children}
-                {/* </ThemeProvider> */}
+                {children}
             </Transition>
         </div>
     )

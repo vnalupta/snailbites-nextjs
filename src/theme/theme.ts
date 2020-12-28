@@ -64,7 +64,7 @@ const GlobalTheme = {
         h1: {
             variant: 'text.heading',
             fontSize: 6,
-            lineHeight: '3.125rem'
+            lineHeight: '3.125rem',            
         },
         h2: {
             fontSize: 5,            
@@ -92,6 +92,11 @@ const GlobalTheme = {
                 opacity: .85
               }            
         },
+        'navlink': {
+            variant: 'styles.h1',
+            fontStyle: 'normal',
+            fontWeight: 500
+        }
     }
 }
 const BlogTheme = {
