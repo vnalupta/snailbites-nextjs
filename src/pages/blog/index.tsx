@@ -6,21 +6,15 @@ import BlogList from '@components/BlogList'
 import matter from "gray-matter";
 
 export default function Blog ({ blogs, title, description, ...props }) {
-
-    // const { data } = props
-    // const siteTitle = 'title'
-    // const posts = [];
-
     return (
         <main role="main" sx={{ width: ['100%', '100%', '768px'], variant: 'styles.layout' }}>
                 <section sx={{ marginTop: '100px'}}>
                     <h1>Blogs</h1>
-                    <BlogList blogs={blogs} />      
+                    <BlogList blogs={blogs} showDots />      
                 </section>              
         </main>
     )
 }
-
 
 export async function getStaticProps() {
     const configData = await import(`../../../siteconfig.json`)

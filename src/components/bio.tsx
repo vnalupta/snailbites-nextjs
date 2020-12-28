@@ -56,14 +56,13 @@ function Bio() {
                         </p>
 
     
-                {/* <Link> */}
-                {/* // to={`/blog/${data.link.fields.slug}`}> */}
+                <Link href="/blog">
                 <Button flavor="default" sx={{
                     '@media (max-width: 768px)': {
                         margin: '0 auto'
                     }
                 }}>Read the Blog</Button>
-                {/* </Link> */}
+                </Link>
             </Column>
         </section>
     )

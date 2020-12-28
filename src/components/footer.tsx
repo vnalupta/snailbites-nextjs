@@ -2,8 +2,9 @@
 import { jsx } from 'theme-ui'
 
 import React from "react"
-import { Colors } from '../theme/theme';
-import Social from './social';
+import { Colors } from '@theme/theme';
+import Social from '@components/social';
+import BlogList from '@components/bloglist';
 // import FlexContainer from "./flexContainer"
 // import Social from "../components/social"
 // import BlogFeed from "./blogFeed"
@@ -12,10 +13,9 @@ import Social from './social';
 // import { Colors } from "../theme/global"
 
 export const Footer: React.FC<{
-    showBlog: boolean,
-    showSocial: boolean,
+    blogs: any,
     backgroundColor?: string
-}> = ({ showBlog, showSocial, backgroundColor = `${Colors.plum}` }) => {
+}> = ({ blogs, backgroundColor = `${Colors.plum}` }) => {
     return (
         <footer sx={{
             overflow: 'hidden',
@@ -38,7 +38,7 @@ export const Footer: React.FC<{
                         position: 'relative',
                     }}
                 >
-                    {/* {showBlog && <BlogFeed />} */}
+                    <BlogList blogs={blogs} />
                     <p sx={{ variant: 'styles.small' }}>This site was made with {" "}
                         <a
                             href="https://nextjs.org/learn"
@@ -62,7 +62,7 @@ export const Footer: React.FC<{
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
-                {showSocial && <Social useLightTheme={false} />}
+                <Social useLightTheme={false} />
             </div>
         </footer>
     )

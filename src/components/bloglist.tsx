@@ -3,13 +3,16 @@ import { jsx, Link as A } from 'theme-ui'
 
 import Link from 'next/link'
 
-export default function BlogList({ blogs }) {
+export default function BlogList({ blogs, showDots }) {
   if (blogs === 'undefined') return null
 
   return (
     <div>
       {!blogs && <div>No blogs!</div>}
-      <ul>
+      <ul sx={{
+        listStyleType: `${showDots ? '' : 'none'}`,
+        padding: `${showDots ? 'revert' : 0}`
+      }}>
         {blogs &&
           blogs.map((blog) => {
             return (

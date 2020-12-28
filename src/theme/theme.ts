@@ -89,8 +89,9 @@ const GlobalTheme = {
             color: 'primary',
             'transition': '150ms ease-out',
             '&:hover': {
-                opacity: .85
-              }            
+                opacity: .85,
+                cursor: 'pointer'
+            }            
         },
         'navlink': {
             variant: 'styles.h1',
