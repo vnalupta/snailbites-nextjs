@@ -3,7 +3,7 @@ import { jsx, Link as A } from 'theme-ui'
 
 import Link from 'next/link'
 
-export default function BlogList({ blogs, showDots }) {
+function BlogList({ blogs, showDots }) {
   if (blogs === 'undefined') return null
 
   return (
@@ -27,3 +27,5 @@ export default function BlogList({ blogs, showDots }) {
     </div>
   )
 }
+
+export default BlogList
