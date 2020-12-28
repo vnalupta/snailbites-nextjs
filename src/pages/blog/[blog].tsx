@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-import Layout from "@components/layout";
 import matter from "gray-matter";
-import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 export default function BlogPost({ frontmatter, markdownBody }) {
@@ -12,7 +10,7 @@ export default function BlogPost({ frontmatter, markdownBody }) {
     const { title, author, date } = frontmatter;
 
     return (
-            <main role="main" sx={{ width: '768px', variant: 'styles.layout' }}>
+            <main role="main" sx={{ width: ['100%', '100%', '768px'], variant: 'styles.layout' }}>
                 <section sx={{ marginTop: '100px'}}>
                     <h1 sx={{
                         margin: '0 0 25px 0'
@@ -31,14 +29,17 @@ export default function BlogPost({ frontmatter, markdownBody }) {
     )
 }
 
+/**
+ * Source: 
+ * https://www.netlify.com/blog/2020/05/04/building-a-markdown-blog-with-next-9.4-and-netlify/#
+ */
+
 export async function getStaticProps({ ...ctx }) {
     const { blog } = ctx.params;
 
     const content = await import(`../../../blogs/${blog}/${blog}.md`);
     const config = await import(`../../../siteconfig.json`);
     const data = matter(content.default);
-
-    console.log(content.default)
 
     return {
         props: {
