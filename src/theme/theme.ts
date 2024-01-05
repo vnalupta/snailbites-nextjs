@@ -11,6 +11,10 @@ const Color = {
     eggshell: `#D8D8D8`,
 }
 
+// const theme = {
+// a { color: ${props => props.location === "/" ? Color.neon : Color.sesame}}
+// }
+
 export { Color, Font }
 
-    // a { color: ${props => props.location === "/" ? Color.neon : Color.sesame}}
+    

@@ -1,5 +1,6 @@
 @import "./normalize.css";
 
+// from theme.ts
 $sesame: #202020;
 $plum: #4F1C48;
 $ocean: #304A81;
@@ -7,7 +8,11 @@ $neon: #D6E307;
 $eggshell: #D8D8D8;
 $fontSize: 16px;
 $fontFamily: Poppins;
+@import "./normalize.css";
 
+/*
+ * GLOBALS
+ **/
 body {
     overflow-x: hidden;
 }
@@ -16,8 +21,8 @@ html {
     font: $fontSize $fontFamily, sans-serif;        
 }
 body {                
-    color: #D8D8D8;
-    background: #202020;
+    color: $eggshell;
+    background: $sesame;
     line-height: 1.65;
 }
 
@@ -59,3 +64,173 @@ a { color: $neon }
         transform: translate(15vw, 22vh);
     }
 }
+
+/**
+ * Nav
+ **/
+ $baseUnit: 11px;
+ $baseTiming: 250ms;
+ 
+ .container {
+     position: fixed;
+     z-index: 20;
+ 
+     &.open {
+         z-index: 1000;
+     }
+ }
+ 
+ .heading {
+     font-style: normal;
+     font-weight: 500;
+ }
+ 
+ .backdrop {
+     position: fixed;
+     top: 0;
+     left: 0;    
+     z-index: 1;
+ 
+     height: 100vh;
+     width: 100vw;
+ 
+     background-color: $eggshell;
+     
+     transform: translate3d(-100vw, 0, 0);    
+     transition: 350ms ease-out;
+     transition-delay: 50ms;
+ 
+     &.open {
+         transform: translate3d(0, 0, 0);
+     }
+ }
+ 
+ .list {
+     transition: 200ms visibility ease-in;
+     visibility: hidden;
+ 
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+ 
+     width: 100vw;
+     height: 100vh;
+ 
+     position: absolute;
+     top: -1em;    
+     
+     padding: 0;
+     margin: 0;
+ 
+     list-style-type: none;    
+     z-index: 1;    
+ 
+     & > li {
+         transition: 200ms opacity ease-in;
+         transition-delay: 50ms;
+         opacity: 0;
+ 
+         text-transform: uppercase;
+         margin-bottom: .5em;
+ 
+         & > a {
+             text-decoration: none;
+             color: $sesame;
+ 
+             &.selected {
+                 pointer-events: none;
+                 color: $plum;  
+             }
+             
+             &:after {
+                 content: '';
+                 width: 0;
+                 height: 4px;
+                 display: block;
+                 background: $sesame;
+                 transition: width 250ms ease-in-out;
+             }
+ 
+             &:hover:after {
+                 width: 100%;
+             }
+ 
+             &.selected:after {                
+                 transition: none;
+                 width: 100%;
+                 background: $plum;
+             }
+         }
+     } 
+ 
+     &.open {
+         visibility: visible;    
+ 
+         & > li {
+             opacity: 1;
+         }
+     }
+ }
+ 
+ .button {
+     position: relative;
+     cursor: pointer;
+     z-index: 100;
+ 
+     width: $baseUnit * 3;
+     height: $baseUnit * 3;
+     margin: $baseUnit * 2 0 0 $baseUnit * 2;
+   
+     & > div {
+         position: absolute;
+         left: 0;
+ 
+         height: 4px;
+         width: 100%;
+ 
+         opacity: 1;
+         transform: rotate(0);
+             
+         transition-property: top, left, rotate, opacity, transform, background-color;
+         transition-duration: $baseTiming;
+         transition-timing-function: ease-in;    
+ 
+         background-color: $eggshell;      
+     }
+     
+     & div:nth-child(1) {
+         top: 0;
+     }
+     
+     & div:nth-child(2) {
+         top: $baseUnit;
+     }
+     
+     & div:nth-child(3) {
+         top: $baseUnit * 2;
+     }
+ 
+     &.open {
+         & > div {
+             background-color: $sesame; 
+         }
+ 
+         & div:nth-child(1) {
+             top: $baseUnit;
+             transform: rotate(135deg);
+         }
+         
+         & div:nth-child(2) {
+             top: $baseUnit;
+             opacity: 0;
+             left: $baseUnit * -4;
+         }
+         
+         & div:nth-child(3) {
+             top: $baseUnit;
+             transform: rotate(-135deg);
+         }
+     }
+ }
+ 

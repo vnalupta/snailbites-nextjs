@@ -58,9 +58,9 @@ const Transition = ({ children, location }) => {
                                 ...transitionStyles[status],
                             }}
                         >
-                            <ThemeProvider theme={theme}>
+                            {/* <ThemeProvider theme={theme}>
                                 {children}
-                            </ThemeProvider>
+                            </ThemeProvider> */}
                         </div>
                     )
                 }}
@@ -77,27 +77,5 @@ export default Transition;
 //             ...defaultStyle,
 //             ...transitionStyles[props.status]
 //           }}>{props.children}</div>
-//     )
-// }
-
-// const FadeLink = props => {
-//     const target = props.target || null
-//     return (
-//         <TransitionLink 
-//             exit={{ 
-//                 delay: 0.35, 
-//                 length: 0.2 
-//             }}
-//             entry={{   
-//                 trigger: () => scrollHandler(target),             
-//                 delay: .2,
-//                 length: 0.2 
-//             }}
-//             to={props.to}
-//             onClick={props.onClick}
-//             state={props.state}
-//         >
-//             {props.children}
-//         </TransitionLink>
 //     )
 // }
