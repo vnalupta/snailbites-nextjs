@@ -1,11 +1,10 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
+
 import React, { ReactChild } from "react"
 
-import { Colors } from '../theme/theme'
+import { Color } from '../theme/theme'
 
 const Mountains = () => (
-    <section sx={{
+    <section style={{
         width: '100vw',
         height: '22vw',
         position: 'relative',
@@ -14,7 +13,7 @@ const Mountains = () => (
             <MountainSVG hex={"#565F74"} isBg />
         </Mountain>
         <Mountain>
-            <MountainSVG hex={Colors.ocean} />
+            <MountainSVG hex={Color.ocean} />
         </Mountain>
     </section>
 )
@@ -26,7 +25,7 @@ const Mountains = () => (
  */
 const Mountain = ({ children }: { children: ReactChild }) =>
     (
-        <div sx={{
+        <div style={{
             width: '100vw',
             height: '22vw',
             position: 'absolute',
@@ -41,7 +40,7 @@ const Mountain = ({ children }: { children: ReactChild }) =>
  * @param hex: string
  */
 const MountainSVG = ({ hex, isBg }: { hex: string, isBg?: boolean }) => (
-    <svg viewBox="0 0 1440 316" xmlns="http://www.w3.org/2000/svg" sx={
+    <svg viewBox="0 0 1440 316" xmlns="http://www.w3.org/2000/svg" style={
         isBg && {
             opacity: .2,
             position: 'absolute',

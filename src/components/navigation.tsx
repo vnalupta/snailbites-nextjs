@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
 import navStyles from './navigation.module.scss'
 
 import Link from "next/link";
@@ -38,27 +35,22 @@ const Navigation = (props) => {
             </div>
             <div className={`${navStyles.backdrop} ${open ? `${navStyles.open}` : ``}`} />            
             <ul className={`${navStyles.list} ${open ? `${navStyles.open}` : ``}`}>
-                <li sx={{ variant: 'styles.navlink' }}>
-                    <Link href={rootPath}>
-                        <a onClick={e => handleClick(e, 'home')}>
-                            Home
-                        </a>
+                {/* <li style={{ variant: 'styles.navlink' }}> */}
+                <li>
+                    <Link href={rootPath} onClick={e => handleClick(e, 'home')}>
+                        Home                        
                     </Link>
                 </li>
-                <li sx={{ variant: 'styles.navlink' }}>
-                    <Link href={rootPath}>
-                        <a
-                            onClick={e => handleClick(e, 'work')}>
-                            Work
-                        </a>
+                {/* <li style={{ variant: 'styles.navlink' }}> */}
+                <li>
+                    <Link href={rootPath} onClick={e => handleClick(e, 'work')}>
+                        Work                        
                     </Link>
                 </li>
-                <li sx={{ variant: 'styles.navlink' }}>
-                    <Link href={blogPath}>
-                        <a
-                            onClick={handleClick}>
-                            Blog
-                        </a>
+                {/* <li style={{ variant: 'styles.navlink' }}> */}
+                <li>
+                    <Link href={blogPath} onClick={handleClick}>
+                        Blog                        
                     </Link>
                 </li>
             </ul> 

@@ -1,17 +1,10 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-import { ThemeProvider } from 'theme-ui'
-
-import React, { ReactChild } from 'react';
-
-import { Colors, GlobalTheme } from '@theme/theme';
+import { Color } from '@theme/theme';
 import Jumbotron from '@components/jumbotron';
 import Mountains from '@components/mountains';
 import Bio from '@components/bio';
 import Gradient from '@components/gradient';
 import Work from '@components/work';
 import Footer from '@components/footer';
-import Link from 'next/link';
 import matter from 'gray-matter';
 
 const Home = ({blogs, ...props}) => {
@@ -37,10 +30,10 @@ const Home = ({blogs, ...props}) => {
  * Wrapper for Main
  * @param children 
  */
-function Main({children}:{children: ReactChild|ReactChild[]}) {
+function Main({ children }) {
   return (
-    <main role="main" sx={{
-      backgroundColor: `${Colors.ocean}`
+    <main role="main" style={{
+      backgroundColor: `${Color.ocean}`
     }}>{children}</main>
   )
 }
@@ -49,15 +42,15 @@ function Main({children}:{children: ReactChild|ReactChild[]}) {
  * Wrapper for header
  * @param children
  */
-function Header({style, children}:{style: any, children: ReactChild|ReactChild[]}) {
+function Header({ children, style }:{ children?: React.ReactNode, style: any }) {
   return (
-    <header sx={{ overflow: 'hidden' }}>{children}</header>
+    <header style={{ overflow: 'hidden' }}>{children}</header>
   )
 }
 
 function Spacer() {
   return (
-    <div sx={{
+    <div style={{
       marginBottom: '200px'
     }} />
   )
@@ -75,7 +68,8 @@ export async function getStaticProps() {
 
     const data = keys.map((key, index) => {
       let slug = key.replace(/^.*[\\\/]/, '').slice(0, -3)
-      const value = values[index]
+      const value = values[index];
+      // @ts-expect-error
       const document = matter(value.default)
       return {
         frontmatter: document.data,

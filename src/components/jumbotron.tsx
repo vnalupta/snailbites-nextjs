@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
 import React, { useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
@@ -11,13 +8,13 @@ const Jumbotron = () => {
     })
 
     return (
-        <div sx={{
+        <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             height: '75vh'
         }}>
-            <div ref={titleRef} sx={{
+            <div ref={titleRef} style={{
                 position: 'relative',
                 transition: '500ms opacity ease-out, 150ms transform ease-out',
                 opacity: `${inView ? 1 : 0}`,
@@ -35,7 +32,7 @@ const Jumbotron = () => {
 const Crown = ({ inView }: { inView: boolean }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        sx={{
+        style={{
             position: 'absolute',
             right: '-29px',
             top: '-22px',
@@ -58,13 +55,14 @@ const Crown = ({ inView }: { inView: boolean }) => (
 
 function Title() {
     return (
-        <h1 sx={{
-            variant: 'styles.h1',
-            textAlign: 'center',
-            margin: 0,
-            fontSize: ['38px', 6],
-            lineHeight: ['38px', '3.125rem']            
-        }}>
+        // <h1 style={{
+        //     variant: 'styles.h1',
+        //     textAlign: 'center',
+        //     margin: 0,
+        //     fontSize: ['38px', 6],
+        //     lineHeight: ['38px', '3.125rem']            
+        // }}>
+        <h1>
             VINCENT NALUPTA
             <br />
             IS A UX ENGINEER

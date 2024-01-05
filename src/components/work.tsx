@@ -1,12 +1,10 @@
-/** @jsx jsx */
-import { jsx, Link as A } from 'theme-ui'
-
 import React, { useState, useEffect, useRef } from "react";
 // import Screenshot from "./screenshot"
-import { Colors } from "../theme/theme"
+import styled from "styled-components";
+import { Color } from "@theme/theme";
 
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-// import imac from "../../images/screenshots/work-imac.png";
+import imac from "../../images/screenshots/work-imac.png";
 import Button from './button';
 import Image from 'next/image';
 
@@ -146,144 +144,170 @@ const Work = () => {
 
         id = window.requestAnimationFrame(tick)
     }
-
     return (
         <>
-            <h2 id="work"
-                sx={{ textAlign: 'center', variant: 'styles.h2' }}>
-                Featured Projects
-            </h2>
-            <section sx={{
-                variant: 'styles.layout'
-            }}>
-                <div sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-
-                    '@media (min-width: 1100px)': {
-                        flexDirection: 'row',
-                        alignItems: 'initial'
-                    }
-                }}>
-                    <aside sx={{
-                        flex: '1 1 100%',
-                        textAlign: 'center',
-
-                        '@media (min-width: 1100px)': {
-                            textAlign: 'left',
-                            flex: 'initial'
-                        }
-                    }}>
-                        <ul sx={{
-                            listStyleType: 'none'
-                        }}>
-                            {projects.map(item => (
-                                <li key={item.shortname} sx={{
-                                    mb: '.75rem',
-
-                                    '@media (max-width: 1100px)': {
-                                        display: 'inline',
-
-                                        '&:after': {
-                                            content: `"|"`
-                                        },
-
-                                        '&:last-child:after': {
-                                            content: 'none'
-                                        }
-                                    }
-                                }}>
-                                    <Button
-                                        flavor="link"
-                                        selected={project && project.shortname === item.shortname}
-                                        onClick={() => handleClick(item)}
-                                    >
-                                        {item.name}
-                                    </Button>
-                                </li>)
-                            )}
-                        </ul>
-                    </aside>
-                    <div ref={figureRef} sx={{
-                        // default computed <figure> styles
-                        marginBlockStart: '1em',
-                        marginBlockEnd: '1em',
-                        marginInlineStart: '40px',
-                        marginInlineEnd: '40px',
-                        flex: 'none',
-                        '@media (min-width: 1100px)': {
-                            flex: '0 0 630px'
-                        },
-                        position: 'relative',
-                        width: '630px',
-                        height: '490px',
-
-                    }}>
-                        <Image
-                            src={`/images/work-imac.png`}
-                            alt=""
-                            width={630}
-                            height={490} />
-                        <figure sx={{
-                            margin: 0,
-                            position: 'absolute',
-                            top: '26px',
-                            left: '25px',
-                            width: '580px',
-                            height: '333px',
-                            overflow: 'hidden',
-                        }}>
-                            {project && (
-                                <>
-                                    <div className={loading ? 'loading' : null} sx={{
-
-                                        transition: `opacity ${FADE_TIMING}ms ease-out`,
-                                        opacity: 1,
-                                        '&.loading': {
-                                            opacity: 0
-                                        }
-                                    }}>
-                                        <Image
-                                            src={`/images/screenshots/${project.shortname}.png`}
-                                            alt={`${project.shortname}`}
-                                            width={580}
-                                            height={333} />
-                                    </div>
-                                    <figcaption sx={{
-                                        position: 'absolute',
-                                        margin: 0,
-                                        padding: '10px',
-
-                                        backgroundColor: `${Colors.sesame}`,
-
-                                        '& a': {
-                                            textDecoration: 'none'
-                                        },
-
-                                        transition: `bottom ${FADE_TIMING}ms ease-out`,
-                                        bottom: `${open ? 0 : '-200px'}`,
-
-                                        variant: 'styles.small'
-                                    }}>
-                                        {project.caption}<br />
-                                        {project.url && ` `}
-                                        {project.url && (
-                                            <A href={project.url}
-                                                rel="noopener noreferrer"
-                                                target="_blank">
-                                                {project.link ? project.link : 'Link'} &rarr;
-                                            </A>
-                                        )}
-                                    </figcaption>
-                                </>
-                            )}
-                        </figure>
-                    </div>
-                </div>
-            </section>
+          <h2 id="work" style={{textAlign: `center`}}>Featured Projects</h2>
+          {/* <FlexContainer flex> */}
+            <>
+            <StyledWorkWrapper>
+              <StyledSidebar>
+                <StyledList>
+                  {projects.map(item => (
+                    <li key={item.shortname}>
+                      {/* <StyledLinkButton
+                        selected={project && project.shortname === item.shortname}
+                        onClick={() => handleClick(item)}
+                      >
+                        {item.name}
+                      </StyledLinkButton> */}
+                    </li>
+                  )
+                  )}
+                </StyledList>
+              </StyledSidebar>
+              <StyledFigureWrapper ref={figureRef}>
+                <StyledFigure>
+                  {project && (
+                    <>
+                    <StyledScreenshot
+                      className={loading ? 'loading' : null}
+                    >
+                      {/* <Screenshot filename={project.shortname} />                   */}
+                    </StyledScreenshot>
+                    {/* open={open} */}
+                    <StyledCaption  className="small">                
+                      {project.caption}<br />
+                      {project.url && ` `}
+                      {project.url && <a href={project.url} rel="noopener noreferrer" target="_blank">
+                        {project.link ? project.link : 'Link'} &rarr;
+                        </a>}
+                    </StyledCaption>
+                    </>
+                  )}
+                </StyledFigure>
+              </StyledFigureWrapper>
+            </StyledWorkWrapper>
+          {/* </FlexContainer> */}
+          </>
         </>
-    )
-}
-
-export default Work;
+      )
+    }
+    
+    
+    const StyledList = styled.ul`
+      list-style-type: none;
+    
+      li {
+        margin-bottom: .75rem;
+    
+        @media (max-width: 1100px) {
+          display: inline;
+          
+          &:after {
+            content: '|';
+          }
+    
+          &:last-child:after {
+            content: none;
+          }
+        }
+      }
+    
+    `
+    
+    const StyledLinkButton = styled.button`
+      text-align: initial;
+      background: inherit;
+      border: none;
+      text-decoration: none;
+      transition: text-shadow 300ms ease-out, color 250ms ease-out;
+    
+      &:hover,
+      &:focus {
+        text-shadow: 1px 1px 1px rgb(0,0,0,.5);
+        color: ${Color.eggshell};
+        cursor: pointer;
+      }
+    
+      &:focus {
+        outline: none;
+      }
+    `;
+    // color: ${props =>
+        // props.selected ? Color.eggshell : Color.neon};
+    
+    const StyledWorkWrapper = styled.div`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    
+      @media (min-width: 1100px) {
+        flex-direction: row; 
+        align-items: initial; 
+      }  
+    `
+    
+    const StyledSidebar = styled.aside`
+      flex: 1 1 100%; 
+      text-align: center;
+    
+      @media (min-width: 1100px) {
+        text-align: left;
+        flex: initial;  
+      }  
+    `
+    const StyledFigureWrapper = styled.div`
+      // default computed <figure> styles
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 40px;
+      margin-inline-end: 40px;
+    
+      flex: none;
+    
+      @media (min-width: 1100px) {
+        flex: 0 0 630px;    
+      }  
+    
+      position: relative;
+      width: 630px;
+      height: 490px;
+    
+    
+    `
+    //   background: url(${imac}) no-repeat 0 0;
+    const StyledFigure = styled.figure`
+      margin: 0;
+      position: absolute;
+      top: 26px;
+      left: 25px;
+      width: 580px;
+      height: 333px;
+      overflow: hidden;
+    `
+    
+    const StyledScreenshot = styled.div`  
+      transition: opacity ${FADE_TIMING}ms ease-out;
+      opacity: 1;  
+      &.loading {
+        opacity: 0;
+      }
+    `
+    
+    const StyledCaption = styled.figcaption`
+      position: absolute;      
+      margin: 0;
+      padding: 10px;
+    
+      background-color: ${Color.sesame};
+    
+      & a {
+        text-decoration: none;
+      }
+      
+      transition bottom ${FADE_TIMING}ms ease-out;  
+      bottom: 0;      
+    `;
+    // bottom: ${props => props.open ? 0 : `-200px`}
+    
+    export default Work;

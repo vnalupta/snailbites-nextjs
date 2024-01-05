@@ -7,11 +7,13 @@ import Navigation from "@components/navigation";
 const SnailbitesApp = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
-      <Layout>
-
-      <Navigation />
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+      <h1>hi</h1>
+      {/* <Layout> */}
+        <>
+          <Navigation />
+          <Component {...pageProps} key={router.route} />
+        </>
+      {/* </Layout> */}
     </>
   )
 }

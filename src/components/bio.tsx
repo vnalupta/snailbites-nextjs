@@ -1,42 +1,38 @@
-/** @jsx jsx */
-import { jsx, Link as A } from 'theme-ui'
-
-import React, { FunctionComponent, useRef } from "react"
+import { useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import Button from "./button"
-import Image from "next/image";
+import Image from 'next/image'
 import Link from 'next/link';
-// import Link from "next/link";
 
 function Bio() {
     const bioRef = useRef(null);
-    const [inView] = useIntersectionObserver(bioRef, {
-        threshold: .3
-    })
+    // const [inView] = useIntersectionObserver(bioRef, {
+    //     threshold: .3
+    // })
 
     return (
-        <section  sx={{
-            variant: 'styles.layout'
-        }}>
+        <section>
+        {/* // <section css={ GlobalTheme.layout }> */}
             <Column>
-                <div sx={{
+                <div style={{
                     width: '385px',
                     position: 'absolute',
                     left: '-145px',
                     top: '-113px'
                 }}>
-                    <BioBg />
+                <BioBg />
                 </div>
-
                 <Image
                     src="/images/profile.png"
                     alt="Vincent Nalupta's shadow against some subway tiles."
                     width={240}
-                    height={320} />
+                    height={320} 
+                />
             </Column>
-            <Column rhs={true} inView={inView}>
-                <h2 ref={bioRef} sx={{
-                        variant: 'styles.h2',
+            <Column rhs={true} inView={true}>
+                {/* fix heading variant */}
+                <h2 ref={bioRef} style={{
+                        // variant: 'styles.h2',
                         marginBottom: '10px'
                     }}>
                     HELLO!
@@ -45,10 +41,10 @@ function Bio() {
                     My name is Vincent Nalupta and I am currently an Engineering Manager at Grubhub.
                         </p>
                 <p>
-                    I've won some <A href="https://www.commarts.com/webpicks/timothy-goodman" target="_blank" rel="noopener noreferrer">awards</A> for my work and some <A href="https://twitter.com/snailbites/status/917875803983147008" target="_blank" rel="noopener noreferrer">giant pencils</A> for my <A href="https://cssdevconf2016.sched.com/vnalupta" target="_blank" rel="noopener noreferrer">talks</A>.
+                    I've won some <Link href="https://www.commarts.com/webpicks/timothy-goodman" target="_blank" rel="noopener noreferrer">awards</Link> for my work and some <Link href="https://twitter.com/snailbites/status/917875803983147008" target="_blank" rel="noopener noreferrer">giant pencils</Link> for my <Link href="https://cssdevconf2016.sched.com/vnalupta" target="_blank" rel="noopener noreferrer">talks</Link>.
                         </p>
                 <p
-                    sx={{
+                    style={{
                         marginBottom: '30px'
                     }}
                 >
@@ -57,22 +53,23 @@ function Bio() {
 
     
                 <Link href="/blog">
-                <Button flavor="default" sx={{
+                    {/* Fix responsive */}
+                {/* <Button flavor="default" style={{
                     '@media (max-width: 768px)': {
                         margin: '0 auto'
                     }
-                }}>Read the Blog</Button>
+                }}>Read the Blog</Button> */}
                 </Link>
             </Column>
         </section>
     )
 }
 
-const Column: FunctionComponent<{    
+const Column = ({ rhs, inView, children }: {    
     rhs?: boolean,
     inView?: boolean,
     children: any
-}> = ({ rhs, inView, children }) => {
+}) => {
     const base = {
         maxWidth: '300px',
         alignSelf: 'flex-end',
@@ -86,7 +83,7 @@ const Column: FunctionComponent<{
             transition: '250ms ease-in',
         } : {
                 paddingRight: '50px',
-                '@media (max-width: 768px)': {
+                '@media (maxWidth: 768px)': {
                     display: 'none'
                 },
                 position: 'relative' as any
@@ -98,7 +95,7 @@ const Column: FunctionComponent<{
     }
 
     return (
-        <div sx={styles}>
+        <div style={styles}>
             {children}
         </div>
     )

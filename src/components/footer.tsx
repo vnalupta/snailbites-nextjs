@@ -1,8 +1,5 @@
-// @jsx jsx
-import { jsx } from 'theme-ui'
-
 import React from "react"
-import { Colors } from '@theme/theme';
+import { Color } from '@theme/theme';
 import Social from '@components/social';
 import BlogList from '@components/bloglist';
 // import FlexContainer from "./flexContainer"
@@ -10,36 +7,38 @@ import BlogList from '@components/bloglist';
 // import BlogFeed from "./blogFeed"
 
 // import styled from "styled-components"
-// import { Colors } from "../theme/global"
+// import { Color } from "../theme/global"
 
 export const Footer: React.FC<{
     blogs: any,
     backgroundColor?: string
-}> = ({ blogs, backgroundColor = `${Colors.plum}` }) => {
+}> = ({ blogs, backgroundColor = `${Color.plum}` }) => {
     return (
-        <footer sx={{
-            overflow: 'hidden',
-            padding: '1em 0',
-            color: `${Colors.eggshell}`,
-            backgroundColor: `${backgroundColor}`,
-            '& a': {
-                color: `${Colors.neon}`,
-                textDecoration: 'none'
-            }
-        }}>
-            <div sx={{
-                variant: 'styles.layout',
+        <footer>
+        {/* // <footer style={{
+        //     overflow: 'hidden',
+        //     padding: '1em 0',
+        //     color: `${Color.eggshell}`,
+        //     backgroundColor: `${backgroundColor}`,
+        //     '& a': {
+        //         color: `${Color.neon}`,
+        //         textDecoration: 'none'
+        //     }
+        // }}> */}
+        {/* variant: 'styles.layout', */}
+            <div style={{                
                 justifyContent: 'space-between'
             }}>
                 {/* Fixes zindex bug with mountain SVG above it */}
                 <section
-                    sx={{
+                    style={{
                         zIndex: 10,
                         position: 'relative',
                     }}
                 >
                     <BlogList blogs={blogs} />
-                    <p sx={{ variant: 'styles.small' }}>This site was made with {" "}
+                    {/* style={{ variant: 'styles.small' } */}
+                    <p>This site was made with {" "}
                         <a
                             href="https://nextjs.org/learn"
                             target="_blank"
@@ -58,7 +57,9 @@ export const Footer: React.FC<{
                         {" "}and ❤️
                     </p>
                     <p
-                        sx={{ variant: 'styles.small', transform: 'translateY(-1em)' }}>
+                        
+                        // fix variant variant: 'styles.small', 
+                        style={{ transform: 'translateY(-1em)' }}>
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>

@@ -1,15 +1,15 @@
-/** @jsx jsx */
-import { jsx, Link as A } from 'theme-ui'
-
 import Link from 'next/link'
-
-function BlogList({ blogs, showDots }) {
+type BlogListProps = {
+  blogs: any;
+  showDots?: boolean;
+}
+function BlogList({ blogs, showDots = false }: BlogListProps ) {
   if (blogs === 'undefined') return null
 
   return (
     <div>
       {!blogs && <div>No blogs!</div>}
-      <ul sx={{
+      <ul style={{
         listStyleType: `${showDots ? '' : 'none'}`,
         padding: `${showDots ? 'revert' : 0}`
       }}>
@@ -18,7 +18,7 @@ function BlogList({ blogs, showDots }) {
             return (
               <li key={blog.slug}>
                 <Link href={{ pathname: `/blog/${blog.slug}` }}>
-                  <A>{blog.frontmatter.title}</A>
+                  {blog.frontmatter.title}
                 </Link>
               </li>
             )
