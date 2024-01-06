@@ -1,4 +1,3 @@
-import React, { ReactChild } from "react"
 import { Color } from '../theme/theme'
 
 /**
@@ -6,7 +5,7 @@ import { Color } from '../theme/theme'
  * @param prop 
  */
 const Button: React.FC<{
-    children?: ReactChild,
+    children?: React.ReactNode,
     flavor: 'default' | 'link',
     selected?: boolean,
     onClick?: (e) => void

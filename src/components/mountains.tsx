@@ -1,7 +1,4 @@
-
-import React, { ReactChild } from "react"
-
-import { Color } from '../theme/theme'
+import { Color } from '@theme/theme'
 
 const Mountains = () => (
     <section style={{
@@ -23,7 +20,7 @@ const Mountains = () => (
  * Wrapper for the mountain SVG
  * @param children: ReactChild 
  */
-const Mountain = ({ children }: { children: ReactChild }) =>
+const Mountain = ({ children }: { children: React.ReactNode }) =>
     (
         <div style={{
             width: '100vw',

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import Screenshot from "./screenshot"
 import styled from "styled-components";
 import { Color } from "@theme/theme";
 
+
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import imac from "../../images/screenshots/work-imac.png";
+import imac from "/public/images/screenshots/work-imac.png";
 import Button from './button';
 import Image from 'next/image';
 
@@ -165,15 +165,25 @@ const Work = () => {
                   )}
                 </StyledList>
               </StyledSidebar>
-              <StyledFigureWrapper ref={figureRef}>
+              <StyledFigureWrapper ref={figureRef} 
+                    style={{
+                      background: `url(${imac.src}) no-repeat 0 0`
+                    }}>
                 <StyledFigure>
                   {project && (
                     <>
-                    {/* <StyledScreenshot
+                    <StyledScreenshot
                       className={loading ? 'loading' : null}
                     >
-                      <Screenshot filename={project.shortname} />                  
-                    </StyledScreenshot> */}
+                      <Image                      
+                          src={`/images/screenshots/dls.png`}
+                          priority={true}
+                          width={580}
+                          height={333}
+                          alt={project.caption}
+                      />               
+                      
+                    </StyledScreenshot>
                     {/* open={open} */}
                     <StyledCaption  className="small">                
                       {project.caption}<br />
@@ -271,19 +281,18 @@ const Work = () => {
     
       position: relative;
       width: 630px;
-      height: 490px;
-    
-    
+      height: 490px;    
     `
-    //   background: url(${imac}) no-repeat 0 0;
-    const StyledFigure = styled.figure`
+    const StyledFigure = styled.figure<{
+        path: string;
+      }>`
       margin: 0;
       position: absolute;
       top: 26px;
       left: 25px;
       width: 580px;
       height: 333px;
-      overflow: hidden;
+      overflow: hidden;              
     `
     
     const StyledScreenshot = styled.div`  
