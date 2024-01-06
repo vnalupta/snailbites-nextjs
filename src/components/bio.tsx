@@ -3,17 +3,38 @@ import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import Button from "./button"
 import Image from 'next/image'
 import Link from 'next/link';
+import styled from "styled-components";
 
 function Bio() {
     const bioRef = useRef(null);
-    // const [inView] = useIntersectionObserver(bioRef, {
-    //     threshold: .3
-    // })
+    const [inView] = useIntersectionObserver(bioRef, {
+        threshold: .3
+    })
+
 
     return (
-        <section>
+        <BioContainer>
         {/* // <section css={ GlobalTheme.layout }> */}
-            <Column>
+                <BioColumn>
+                        <BioWrapper>
+                            <BioBg />
+                        </BioWrapper>
+
+                        <Image
+                    src="/images/profile.png"
+                    alt="Vincent Nalupta's shadow against some subway tiles."
+                    width={240}
+                    height={320} 
+                />
+
+                    </BioColumn>
+            {/* <BioColumn>
+            <Image
+                    src="/images/profile.png"
+                    alt="Vincent Nalupta's shadow against some subway tiles."
+                    width={240}
+                    height={320} 
+                />
                 <div style={{
                     width: '385px',
                     position: 'absolute',
@@ -22,14 +43,9 @@ function Bio() {
                 }}>
                 <BioBg />
                 </div>
-                <Image
-                    src="/images/profile.png"
-                    alt="Vincent Nalupta's shadow against some subway tiles."
-                    width={240}
-                    height={320} 
-                />
-            </Column>
-            <Column rhs={true} inView={true}>
+
+            </BioColumn> */}
+            <BioColumn rhs={true} inView={inView}>
                 {/* fix heading variant */}
                 <h2 ref={bioRef} style={{
                         // variant: 'styles.h2',
@@ -54,18 +70,25 @@ function Bio() {
     
                 <Link href="/blog">
                     {/* Fix responsive */}
-                {/* <Button flavor="default" style={{
-                    '@media (max-width: 768px)': {
-                        margin: '0 auto'
-                    }
-                }}>Read the Blog</Button> */}
+                
+                    <BioButton>Read the Blog</BioButton>
                 </Link>
-            </Column>
-        </section>
+            </BioColumn>
+        </BioContainer>
     )
 }
+const BioContainer = styled.section`
+    display: flex;  
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 73px;
 
-const Column = ({ rhs, inView, children }: {    
+    @media (max-width: 540px) {
+        padding: 0 25px;
+    }
+`
+
+const BioColumn = ({ rhs, inView, children }: {    
     rhs?: boolean,
     inView?: boolean,
     children: any
@@ -100,6 +123,31 @@ const Column = ({ rhs, inView, children }: {
         </div>
     )
 }
+// const BioProfile = styled(BioColumn)`
+//     position: relative;
+//     padding-right: 50px;
+
+//     @media (maxWidth: 768px) {
+//         display: none;
+//     }
+// `
+
+
+const BioWrapper = styled.div`
+    width: 385px;                        
+    position: absolute;
+    left: -145px;
+    top: -113px;   
+`
+
+const BioButton = styled(Button)<{
+        children: any;
+    }>` 
+    @media (maxWidth: 768px) {
+        margin: 0 auto;
+    }
+`
+
 
 const BioBg = () => (
     <svg viewBox="0 0 435 490" xmlns="http://www.w3.org/2000/svg">

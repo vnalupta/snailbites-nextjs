@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
 
 const nextConfig = {
   reactStrictMode: true,
+  sassOptions: {
+    includePaths: [path.join('theme', 'styles')],
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push({
       test: /\.md$/,
       loader: "raw-loader",
     });
-
     // Important: return the modified config
     return config;
   },

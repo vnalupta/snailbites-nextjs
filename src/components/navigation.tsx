@@ -31,7 +31,11 @@ const Navigation = (props) => {
         }         
     }
 
-    const handleClick = (target) => {
+    type HandleClickProps = {
+        target: EventTarget;
+        location?: string;
+    }
+    const handleClick = ({ target, location } : HandleClickProps ) => {
         setOpen(!open);
 
         if (location === rootPath && !!target) {
@@ -67,6 +71,21 @@ const Navigation = (props) => {
                         Blog                        
                     </Link>
                 </li>                
+                {/* <li className="h1">
+                    <Link href={rootPath} onClick={e => handleClick(e, 'home')}>
+                        Home                        
+                    </Link>
+                    </li>
+                <h1>
+                    <Link href={rootPath} onClick={e => handleClick(e, 'work')}>
+                        Work                        
+                    </Link>
+                </h1>            
+                <h1>
+                    <Link href={rootPath} onClick={e => handleClick(e, 'blog')}>
+                        Blog                        
+                    </Link>
+                </h1>    */}
             </StyledList>
         </StyledNav>
     )
