@@ -323,9 +323,9 @@ const Work = () => {
         text-decoration: none;
       }
       
-      transition bottom ${FADE_TIMING}ms ease-out;  
-      bottom: 0;      
+      transition: bottom ${FADE_TIMING}ms ease-out;  
+      bottom: ${props => props.open ? 0 : `-200px`}
     `;
-    // bottom: ${props => props.open ? 0 : `-200px`}
+    
     
     export default Work;

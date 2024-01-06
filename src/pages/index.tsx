@@ -20,7 +20,7 @@ const Home = ({blogs, ...props}) => {
         <Work />                       
         <Spacer />
         <Gradient />    
-        <Footer blogs={blogs} />
+        <Footer blogs={blogs} location="/" />
       </Main>
     </>
   )

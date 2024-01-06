@@ -5,7 +5,7 @@ import BlogList from '@components/bloglist';
 import styled from "styled-components";
 // import FlexContainer from "./flexContainer"
 // import Social from "../components/social"
-// import BlogFeed from "./blogFeed"
+import BlogFeed from "@components/blogfeed"
 
 // import styled from "styled-components"
 // import { Color } from "../theme/global"
@@ -16,7 +16,6 @@ type FooterProps = {
   }
 function Footer({ 
         blogs, 
-
         location
     }: FooterProps) {
     return (
@@ -24,7 +23,7 @@ function Footer({
             <FooterContainer>
                 {/* Fixes zindex bug with mountain SVG above it */}
                 <section style={{zIndex: 10, position: `relative`}}>
-                    {location === '/' && <BlogFeed />}
+                    {/* {location === '/' && <BlogFeed />} */}
                     <p className="small">This site was made with {" "}
                         <a
                             style={{color:`${Color.neon}`}}
@@ -59,9 +58,10 @@ const StyledFooter = styled.footer<{
         location: string;
     }>`
     overflow: hidden;
-    background-color: ${props => props.location !== "/"
-        ? Color.sesame
-        : Color.plum};
+    background-color: ${props => props.location === "/"        
+        ? Color.plum
+        : Color.sesame
+    };
     padding: 1em 0;
     color: ${Color.eggshell};
 
@@ -75,7 +75,7 @@ const FooterContainer = styled.footer`
     display: flex;  
     justify-content: space-between;
     margin: 0 auto;
-    padding: 0 73px;
+    padding: 0 73px 60px;
 
     @media (max-width: 540px) {
         padding: 0 25px;
