@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
-
 const nextConfig = {
   reactStrictMode: true,
-  sassOptions: {
-    includePaths: [path.join('theme', 'styles')],
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push({

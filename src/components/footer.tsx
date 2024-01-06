@@ -2,6 +2,7 @@ import React from "react"
 import { Color } from '@theme/theme';
 import Social from '@components/social';
 import BlogList from '@components/bloglist';
+import styled from "styled-components";
 // import FlexContainer from "./flexContainer"
 // import Social from "../components/social"
 // import BlogFeed from "./blogFeed"
@@ -9,45 +10,33 @@ import BlogList from '@components/bloglist';
 // import styled from "styled-components"
 // import { Color } from "../theme/global"
 
-export const Footer: React.FC<{
-    blogs: any,
-    backgroundColor?: string
-}> = ({ blogs, backgroundColor = `${Color.plum}` }) => {
+type FooterProps = {
+    blogs: any;
+    location: string;
+  }
+function Footer({ 
+        blogs, 
+
+        location
+    }: FooterProps) {
     return (
-        <footer>
-        {/* // <footer style={{
-        //     overflow: 'hidden',
-        //     padding: '1em 0',
-        //     color: `${Color.eggshell}`,
-        //     backgroundColor: `${backgroundColor}`,
-        //     '& a': {
-        //         color: `${Color.neon}`,
-        //         textDecoration: 'none'
-        //     }
-        // }}> */}
-        {/* variant: 'styles.layout', */}
-            <div style={{                
-                justifyContent: 'space-between'
-            }}>
+        <StyledFooter location={location}>
+            <FooterContainer>
                 {/* Fixes zindex bug with mountain SVG above it */}
-                <section
-                    style={{
-                        zIndex: 10,
-                        position: 'relative',
-                    }}
-                >
-                    <BlogList blogs={blogs} />
-                    {/* style={{ variant: 'styles.small' } */}
-                    <p>This site was made with {" "}
+                <section style={{zIndex: 10, position: `relative`}}>
+                    {location === '/' && <BlogFeed />}
+                    <p className="small">This site was made with {" "}
                         <a
-                            href="https://nextjs.org/learn"
+                            style={{color:`${Color.neon}`}}
+                            href="https://www.gatsbyjs.org"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Next.js
+                            Gatsby
                         </a>
                         ,{" "}
                         <a
+                            style={{ color: `${Color.neon}`}}
                             href="https://www.sketch.com/"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -56,17 +45,41 @@ export const Footer: React.FC<{
                         </a>
                         {" "}and ❤️
                     </p>
-                    <p
-                        
-                        // fix variant variant: 'styles.small', 
-                        style={{ transform: 'translateY(-1em)' }}>
+                    <p className="small" style={{transform: `translateY(-1em)`}}>
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
-                <Social useLightTheme={false} />
-            </div>
-        </footer>
+                {location === '/' && <Social location={location} />}
+        </FooterContainer>
+    </StyledFooter>
     )
 }
+
+const StyledFooter = styled.footer<{
+        location: string;
+    }>`
+    overflow: hidden;
+    background-color: ${props => props.location !== "/"
+        ? Color.sesame
+        : Color.plum};
+    padding: 1em 0;
+    color: ${Color.eggshell};
+
+    & a {
+        color: ${Color.neon};
+        text-decoration: none;
+    }
+`
+
+const FooterContainer = styled.footer`
+    display: flex;  
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 73px;
+
+    @media (max-width: 540px) {
+        padding: 0 25px;
+    }
+`
 
 export default Footer

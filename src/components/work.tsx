@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import Screenshot from "./screenshot"
+import Screenshot from "./screenshot"
 import styled from "styled-components";
 import { Color } from "@theme/theme";
 
@@ -169,11 +169,11 @@ const Work = () => {
                 <StyledFigure>
                   {project && (
                     <>
-                    <StyledScreenshot
+                    {/* <StyledScreenshot
                       className={loading ? 'loading' : null}
                     >
-                      {/* <Screenshot filename={project.shortname} />                   */}
-                    </StyledScreenshot>
+                      <Screenshot filename={project.shortname} />                  
+                    </StyledScreenshot> */}
                     {/* open={open} */}
                     <StyledCaption  className="small">                
                       {project.caption}<br />

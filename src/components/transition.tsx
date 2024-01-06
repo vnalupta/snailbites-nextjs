@@ -4,7 +4,6 @@ import {
     Transition as ReactTransition,
 } from "react-transition-group"
 import { useRouter } from "next/router";
-import { Color, GlobalStyle } from "../theme/theme";
 import { ThemeProvider } from "styled-components";
 
 const DURATION = 200;
