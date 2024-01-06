@@ -175,16 +175,13 @@ const Work = () => {
                       className={loading ? 'loading' : null}
                     >
                       <Image                      
-                          src={`/images/screenshots/dls.png`}
-                          priority={true}
+                          src={`/images/screenshots/${project.shortname}.png`}
                           width={580}
                           height={333}
                           alt={project.caption}
-                      />               
-                      
-                    </StyledScreenshot>
-                    {/* open={open} */}
-                    <StyledCaption  className="small">                
+                      />                                     
+                    </StyledScreenshot>                    
+                    <StyledCaption open={open} className="small">                
                       {project.caption}<br />
                       {project.url && ` `}
                       {project.url && <a href={project.url} rel="noopener noreferrer" target="_blank">
@@ -313,7 +310,9 @@ const Work = () => {
       }
     `
     
-    const StyledCaption = styled.figcaption`
+    const StyledCaption = styled.figcaption<{
+        open: boolean;
+      }>`
       position: absolute;      
       margin: 0;
       padding: 10px;
