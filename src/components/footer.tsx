@@ -28,11 +28,11 @@ function Footer({
                     <p className="small">This site was made with {" "}
                         <a
                             style={{color:`${Color.neon}`}}
-                            href="https://www.gatsbyjs.org"
+                            href="https://nextjs.org/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Gatsby
+                            NextJS
                         </a>
                         ,{" "}
                         <a

@@ -23,6 +23,10 @@ function Bio() {
                     alt="Vincent Nalupta's shadow against some subway tiles."
                     width={240}
                     height={320}
+                    style={{
+                        position: `relative`,
+                        zIndex: 10                        
+                    }}
                 />
             </BioColumn>
             <BioColumn rhs={true} inView={inView}>
@@ -36,8 +40,8 @@ function Bio() {
                     HELLO!
                 </h2>
                 <p>
-                    My name is Vincent Nalupta and I am currently an Engineering
-                    Manager at Grubhub.
+                    My name is Vincent Nalupta and I am an Engineering
+                    Manager.
                 </p>
                 <p>
                     I've won some{" "}
