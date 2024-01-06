@@ -146,20 +146,19 @@ const Work = () => {
     }
     return (
         <>
-          <h2 id="work" style={{textAlign: `center`}}>Featured Projects</h2>
-          {/* <FlexContainer flex> */}
-            <>
+          <h2 id="work" style={{textAlign: `center`}}>Featured Projects</h2>          
+            <WorkContainer>
             <StyledWorkWrapper>
               <StyledSidebar>
                 <StyledList>
                   {projects.map(item => (
                     <li key={item.shortname}>
-                      {/* <StyledLinkButton
+                      <StyledLinkButton
                         selected={project && project.shortname === item.shortname}
                         onClick={() => handleClick(item)}
                       >
                         {item.name}
-                      </StyledLinkButton> */}
+                      </StyledLinkButton>
                     </li>
                   )
                   )}
@@ -197,11 +196,22 @@ const Work = () => {
                 </StyledFigure>
               </StyledFigureWrapper>
             </StyledWorkWrapper>
-          {/* </FlexContainer> */}
-          </>
+          
+          </WorkContainer>
         </>
       )
     }
+    
+    const WorkContainer = styled.section`
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 73px;
+
+    @media (max-width: 540px) {
+        padding: 0 25px;
+    }
+`
     
     
     const StyledList = styled.ul`
@@ -225,7 +235,9 @@ const Work = () => {
     
     `
     
-    const StyledLinkButton = styled.button`
+    const StyledLinkButton = styled.button<{
+        selected: boolean;
+      }>`
       text-align: initial;
       background: inherit;
       border: none;
@@ -242,9 +254,9 @@ const Work = () => {
       &:focus {
         outline: none;
       }
+      color: ${props => props.selected ? Color.eggshell : Color.neon};
     `;
-    // color: ${props =>
-        // props.selected ? Color.eggshell : Color.neon};
+   
     
     const StyledWorkWrapper = styled.div`
       display: flex;
@@ -283,9 +295,7 @@ const Work = () => {
       width: 630px;
       height: 490px;    
     `
-    const StyledFigure = styled.figure<{
-        path: string;
-      }>`
+    const StyledFigure = styled.figure`
       margin: 0;
       position: absolute;
       top: 26px;

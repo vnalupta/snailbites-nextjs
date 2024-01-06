@@ -59,7 +59,7 @@ const Crown = ({ inView }: { inView: boolean }) => (
 )
 
 const TitleWrapper = styled.div<{
-    show: boolean;
+        show: boolean;
         ref: any;
     }>`
     position: relative;

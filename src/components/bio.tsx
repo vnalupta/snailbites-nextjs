@@ -94,9 +94,9 @@ const BioContainer = styled.section`
     margin: 0 auto;
     padding: 0 73px;
 
-    // @media (maxWidth: 540px) {
-    //     padding: 0 25px;
-    // }
+    @media (maxWidth: 540px) {
+        padding: 0 25px;
+    }
 `;
 
 const BioColumn = ({
@@ -123,9 +123,9 @@ const BioColumn = ({
               }
             : {
                   paddingRight: "50px",
-                  // '@media (maxWidth: 768px)': {
-                  //     display: 'none'
-                  // },
+                  '@media (maxWidth: 768px)': {
+                      display: 'none'
+                  },
                   position: "relative" as any,
               }),
         ...(rhs &&
