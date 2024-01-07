@@ -2,14 +2,16 @@ import Link from "next/link";
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Color } from "@theme/theme"
+import { useRouter } from "next/router";
 
 const rootPath = `/`
 const blogPath = `/blog/`
 const cvPath = `/cv/`
 
-const Navigation = (props) => {
+const Navigation = () => {
     const [open, setOpen] = useState(false);
-    const { location } = props;
+    const router = useRouter()
+    const location = router.pathname;
 
     function scrollHandler(target) {  
         if (!target) {
@@ -67,7 +69,7 @@ const Navigation = (props) => {
                     </Link>
                 </li>            
                 <li className="h1">
-                    <Link href={rootPath} onClick={e => handleClick(e, 'blog')}>
+                    <Link href={blogPath} onClick={e => handleClick(e, 'blog')}>
                         Blog                        
                     </Link>
                 </li>                

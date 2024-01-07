@@ -6,8 +6,9 @@ import Gradient from '@components/gradient';
 import Work from '@components/work';
 import Footer from '@components/footer';
 import matter from 'gray-matter';
+import { getSortedPostsData } from 'utils/getPosts';
 
-const Home = ({blogs, ...props}) => {
+const Home = ({posts}) => {
   return (
   <>
       <Header style={{overflow: `hidden`}}>
@@ -17,10 +18,10 @@ const Home = ({blogs, ...props}) => {
       <Main>
         <Bio />
         <Spacer />          
-        <Work />                       
+        <Work />                    
         <Spacer />
         <Gradient />    
-        <Footer blogs={blogs} location="/" />
+        <Footer posts={posts}/>
       </Main>
     </>
   )
@@ -58,31 +59,13 @@ function Spacer() {
 
 export default Home
 
-
 export async function getStaticProps() {
   const configData = await import(`../../siteconfig.json`)
-
-  const blogs = ((context) => {
-    const keys = context.keys()
-    const values = keys.map(context)
-
-    const data = keys.map((key, index) => {
-      let slug = key.replace(/^.*[\\\/]/, '').slice(0, -3)
-      const value = values[index];
-      // @ts-expect-error
-      const document = matter(value.default)
-      return {
-        frontmatter: document.data,
-        markdownBody: document.content,
-        slug,
-      }
-    })
-    return data.reverse()
-  })(require.context('../../blogs', true, /\.md$/))
+  const allPostsData = getSortedPostsData();
 
   return {
     props: {
-      blogs,
+      posts: allPostsData,
       title: configData.default.title,
       description: configData.default.description,
     },

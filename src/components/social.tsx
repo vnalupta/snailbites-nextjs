@@ -3,13 +3,17 @@ import Link from "next/link";
 import React, { FC } from "react"
 import { Color } from '../theme/theme';
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const rootPath = `/`
 const blogPath = `/blog/`
 
-function Social(props) {
+function Social() {
+    const router = useRouter()
+    const location = router.pathname;
+
     return (
-        <SocialWrapper location={props.location} className="body">
+        <SocialWrapper location={location} className="body">
             <SocialTitle>What's good?</SocialTitle>
             <StyledList>
                 <li><a href="https://twitter.com/snailbites">Twitter</a></li>

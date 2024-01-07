@@ -1,23 +1,18 @@
 import React from "react"
 import { Color } from '@theme/theme';
+import styled from "styled-components";
+
 import Social from '@components/social';
 import BlogList from '@components/bloglist';
-import styled from "styled-components";
-// import FlexContainer from "./flexContainer"
-// import Social from "../components/social"
-import BlogFeed from "@components/blogfeed"
+import { useRouter } from "next/router";
+// import BlogFeed from "@components/blogfeed"
 
-// import styled from "styled-components"
-// import { Color } from "../theme/global"
 
-type FooterProps = {
-    blogs: any;
-    location: string;
-  }
-function Footer({ 
-        blogs, 
-        location
-    }: FooterProps) {
+function Footer({posts}) {
+
+    const router = useRouter()
+    const location = router.pathname;
+
     return (
         <StyledFooter location={location}>
             <FooterContainer>
@@ -48,7 +43,7 @@ function Footer({
                         snailbit.es &bull; © {new Date().getFullYear()} all rights reserved
                     </p>
                 </section>
-                {location === '/' && <Social location={location} />}
+                <Social />
         </FooterContainer>
     </StyledFooter>
     )

@@ -8,12 +8,8 @@ import '../theme/styles.scss';
 const SnailbitesApp = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
-      {/* <Layout> */}
-        <>
-          <Navigation />
-          <Component {...pageProps} key={router.route} />
-        </>
-      {/* </Layout> */}
+      <Navigation />
+      <Component {...pageProps} key={router.route} />
     </>
   )
 }
