@@ -6,7 +6,7 @@ import { Color } from '../theme/theme'
  */
 const Button: React.FC<{
     children?: React.ReactNode,
-    flavor: 'default' | 'link',
+    flavor?: 'default' | 'link',
     selected?: boolean,
     onClick?: (e) => void
 }> = ({ children, flavor, selected, onClick }) => {

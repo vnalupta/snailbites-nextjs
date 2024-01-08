@@ -1,22 +1,17 @@
-import React, { useRef } from "react"
+import { useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import styled from "styled-components";
 
-const Jumbotron = () => {
+function Jumbotron() {
     const titleRef = useRef(null);
     const [inView] = useIntersectionObserver(titleRef, {
         threshold: 0
     })
 
     return (
-        <JumbotronWrapper style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '75vh'
-        }}>
+        <JumbotronWrapper>
             <TitleWrapper 
-                show={inView}
+                $inView={inView}
                 ref={titleRef}>
                 <Crown inView={inView} />
                 <Title>
@@ -59,17 +54,14 @@ const Crown = ({ inView }: { inView: boolean }) => (
 )
 
 const TitleWrapper = styled.div<{
-        show: boolean;
-        ref: any;
+    $inView?: boolean;
     }>`
     position: relative;
     transition: 500ms opacity ease-out, 150ms transform ease-out;         
     opacity: 0;
     transform: translate(10px, 10vh);
-    ${props => props.show && `
-        opacity: 1;
-        transform: translate(0, 10vh);
-    `}    
+    
+    ${props => props.$inView && `opacity: 1; transform: translate(0, 10vh);`}    
 `
 const Title = styled.h1`
     text-align: center;

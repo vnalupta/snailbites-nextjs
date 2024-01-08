@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components"
-import { Link } from "next/link"
+// import Link from "next/link"
 
 const BlogFeed = () => {
 
     return (
         <>
-            <p className="lead" css={`margin-bottom: .5em;`}>Blog Posts</p>
+            <p className="lead" style={{marginBottom: `.5em;`}}>Blog Posts</p>
             <StyledList>
+                {/*
                 {entries.map((entry, i) => (
                     <li className="body" key={i}>
-                        <FadeLink 
+                         <FadeLink 
                             to={`blog/${entry.node.fields.slug}`}
                         >
                             {entry.node.frontmatter.title}
-                        </FadeLink>
+                        </FadeLink> 
                     </li>
                 ))}
+            */}
             </StyledList>
         </>
     )

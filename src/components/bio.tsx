@@ -154,8 +154,8 @@ const BioWrapper = styled.div`
 `;
 
 const BioButton = styled(Button)<{
-    children: any;
-}>`
+        children: any;
+    }>`
     @media (maxwidth: 768px) {
         margin: 0 auto;
     }

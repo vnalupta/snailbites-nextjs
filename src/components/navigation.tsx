@@ -8,7 +8,7 @@ const rootPath = `/`
 const blogPath = `/blog/`
 const cvPath = `/cv/`
 
-const Navigation = () => {
+function Navigation() {
     const [open, setOpen] = useState(false);
     const router = useRouter()
     const location = router.pathname;
@@ -33,13 +33,10 @@ const Navigation = () => {
         }         
     }
 
-    type HandleClickProps = {
-        target: EventTarget;
-        location?: string;
-    }
-    const handleClick = ({ target, location } : HandleClickProps ) => {
+    const handleClick = (target?: EventTarget) => {
         setOpen(!open);
 
+        // TODO: get location from target
         if (location === rootPath && !!target) {
             scrollHandler(target);
         }        
@@ -49,7 +46,7 @@ const Navigation = () => {
             <StyledNavButton
                 location={location}
                 aria-label="navigation"
-                onClick={handleClick}
+                onClick={e => handleClick()}
                 open={open}
             >
                 <div></div>
@@ -59,17 +56,17 @@ const Navigation = () => {
             <StyledBackdrop open={open} />
             <StyledList location={location} open={open}>
                 <li className="h1">
-                    <Link href={rootPath} onClick={e => handleClick(e, 'home')}>
+                    <Link href={rootPath} onClick={e => handleClick()}>
                         Home                        
                     </Link>
                 </li>
                 <li className="h1">
-                    <Link href={rootPath} onClick={e => handleClick(e, 'work')}>
+                    <Link href={rootPath} onClick={e => handleClick()}>
                         Work                        
                     </Link>
                 </li>            
                 <li className="h1">
-                    <Link href={blogPath} onClick={e => handleClick(e, 'blog')}>
+                    <Link href={blogPath} onClick={e => handleClick()}>
                         Blog                        
                     </Link>
                 </li>                
