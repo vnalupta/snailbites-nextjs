@@ -1,17 +1,15 @@
-import React, { ReactElement, useEffect } from "react";
+import React from "react";
 import { AppProps } from "next/app";
-import '../theme/styles.scss';
-import Layout from "@components/layout";
 import Navigation from "@components/navigation";
+
+import '../theme/normalize.css'
+import '../theme/styles.scss';
 
 const SnailbitesApp = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
-      <Layout>
-
       <Navigation />
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+      <Component {...pageProps} key={router.route} />
     </>
   )
 }

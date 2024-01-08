@@ -1,59 +1,64 @@
-/** @jsx jsx */
-import { jsx, Link as A } from 'theme-ui'
 import Link from "next/link";
 
 import React, { FC } from "react"
-import { Colors } from '../theme/theme';
+import { Color } from '../theme/theme';
+import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const rootPath = `/`
 const blogPath = `/blog/`
 
-const Social: FC<{ useLightTheme?: boolean }> = ({ useLightTheme }) => {
+function Social() {
+    const router = useRouter()
+    const location = router.pathname;
+
     return (
-        <div sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            alignItems: 'flex-end',
-            transform: 'translateY(-1.7em)',
-            color: `${Colors.eggshell}`,
-            backgroundColor: `${useLightTheme ? Colors.sesame : Colors.plum }`
-        }}>
-            <p sx={{ mb: '.5em'}}>What's good?</p>
-            <List>
+        <SocialWrapper location={location} className="body">
+            <SocialTitle>What's good?</SocialTitle>
+            <StyledList>
                 <li><a href="https://twitter.com/snailbites">Twitter</a></li>
                 <li><a href="https://www.linkedin.com/in/vnalupta/">LinkedIn</a></li>
-            </List>
-            <List>
+            </StyledList>
+            <StyledList>
                 <li>
-                    <Link
-                        href={rootPath}>Home</Link>
+                    <Link href={rootPath}>Home</Link>
                 </li>
                 <li>
-                    <Link
-                        href={blogPath}>Blog</Link>
+                    <Link href={blogPath}>Blog</Link>
                 </li>
-            </List>
-        </div>
+            </StyledList>
+        </SocialWrapper>
     )
 }
 
-/**
- * <ul> with styling
- * @param props 
- */
-const List: FC<{ children: any }> = ({ children }) => (
-    <ul sx={{
-        margin: '0 0 .5em 0',
-        padding: '0',
-        listStyleType: 'none',
-        '& li' : {
-            display: 'inline',
-            ml: '1em'
-        }
-    }}>
-        {children}
-    </ul>
-)
+const SocialWrapper = styled.div<{
+        location: string
+    }>`  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    transform: translateY(-1.7em);
+
+    background-color: ${props => props.location !== "/"
+        ? Color.sesame
+        : Color.plum};
+    color: ${Color.eggshell};
+`
+
+const SocialTitle = styled.p`
+    margin-bottom: .5em;
+`
+
+const StyledList = styled.ul`
+    margin: 0 0 .5em 0;
+    padding: 0;
+    list-style-type: none;
+
+    & li {
+        display: inline;   
+        margin-left: 1em;     
+    }
+`
 
 export default Social

@@ -1,16 +1,12 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
-import React, { ReactChild } from "react"
-import { Colors } from '../theme/theme'
+import { Color } from '../theme/theme'
 
 /**
  * Button
  * @param prop 
  */
 const Button: React.FC<{
-    children?: ReactChild,
-    flavor: 'default' | 'link',
+    children?: React.ReactNode,
+    flavor?: 'default' | 'link',
     selected?: boolean,
     onClick?: (e) => void
 }> = ({ children, flavor, selected, onClick }) => {
@@ -26,8 +22,8 @@ const Button: React.FC<{
         letterSpacing: '1px',
         borderRadius: '6px',
         transition: '100ms ease-in opacity',
-        background: `${Colors.neon}`,
-        color: `${Colors.sesame}`,
+        background: `${Color.neon}`,
+        color: `${Color.sesame}`,
         '&:hover': {
             opacity: 0.85
         }
@@ -43,13 +39,13 @@ const Button: React.FC<{
 
         '&:hover, &:focus': {
             textShadow: '1px 1px 1px rgb(0,0,0,.5)',
-            color: `${Colors.eggshell}`,
+            color: `${Color.eggshell}`,
             cursor: 'pointer',
         },
         '&:focus': {
             outline: 'none',
         },
-        ...(selected && { color: `${Colors.eggshell}` })
+        ...(selected && { color: `${Color.eggshell}` })
     }
     
     let styles = flavor === 'link' ? linkStyles : defaultStyles;
@@ -57,7 +53,7 @@ const Button: React.FC<{
     return (
         <button 
             type="button" 
-            sx={styles}
+            style={styles}
             onClick={onClick}>
             {children}
         </button>

@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
@@ -17,7 +14,7 @@ const Gradient = () => {
     }, [inView]);
 
     return (
-        <section ref={footerRef} sx={{
+        <section ref={footerRef} style={{
             position: 'relative',
             height: '30vh',
             // background: 'rgb(48, 74, 129)',
@@ -28,7 +25,7 @@ const Gradient = () => {
             `
         }}>
             <svg viewBox="0 0 1440 380" xmlns="http://www.w3.org/2000/svg"
-                sx={{
+                style={{
                     position: 'relative',
                     zIndex: 1
                 }}>
@@ -40,7 +37,7 @@ const Gradient = () => {
                 </defs>
 
                 <ellipse
-                    sx={{
+                    style={{
                         transform: 'translate(35vw, 16vh)',
                         opacity: .1
                     }}
@@ -55,7 +52,7 @@ const Gradient = () => {
                 </Cloud>
 
                 <ellipse
-                    sx={{
+                    style={{
                         transform: 'translate(74vw, 23vh)',
                         opacity: .1
                     }}
@@ -65,7 +62,7 @@ const Gradient = () => {
 
                 <path d="M0 3041.525l558.176-162.19 256.6 162.19L1202.885 2784l302.113 319.999.002.001v66H0v-128.475z" transform="translate(0 -2784)" fill="url(#duskMountain)" fillRule="evenodd" opacity=".2" />
             </svg>
-            <div sx={{
+            <div style={{
                 width: '18vh',
                 position: 'absolute',
                 right: '12vh',
@@ -95,8 +92,7 @@ const Cloud: FunctionComponent<{
     cy: string;
     rx: string;
     ry: string;
-    children: any
-}> = ({ inView, children }) => {
+}> = ({ inView }) => {
     let base = {
         opacity: .25,
         transform: 'translate(1vw, 20vh)'
@@ -108,9 +104,7 @@ const Cloud: FunctionComponent<{
     }
 
     return (
-        <ellipse sx={styles}>
-            {children}
-        </ellipse>
+        <ellipse style={styles} />        
     )
 }
 //     opacity: .25;

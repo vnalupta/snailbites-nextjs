@@ -1,41 +1,38 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
-import React, { useRef } from "react"
+import { useRef } from "react"
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import styled from "styled-components";
 
-const Jumbotron = () => {
+function Jumbotron() {
     const titleRef = useRef(null);
     const [inView] = useIntersectionObserver(titleRef, {
         threshold: 0
     })
 
     return (
-        <div sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '75vh'
-        }}>
-            <div ref={titleRef} sx={{
-                position: 'relative',
-                transition: '500ms opacity ease-out, 150ms transform ease-out',
-                opacity: `${inView ? 1 : 0}`,
-                transform: `${inView
-                    ? 'translate(0, 10vh)'
-                    : 'translate(10px, 10vh)'}`,
-            }}>
+        <JumbotronWrapper>
+            <TitleWrapper 
+                $inView={inView}
+                ref={titleRef}>
                 <Crown inView={inView} />
-                <Title />
-            </div>
-        </div>
+                <Title>
+                    SNAILBITES<br/>                    
+                </Title>
+            </TitleWrapper>
+        </JumbotronWrapper>
     )
 }
+
+const JumbotronWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+`
 
 const Crown = ({ inView }: { inView: boolean }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        sx={{
+        style={{
             position: 'absolute',
             right: '-29px',
             top: '-22px',
@@ -56,20 +53,25 @@ const Crown = ({ inView }: { inView: boolean }) => (
     </svg>
 )
 
-function Title() {
-    return (
-        <h1 sx={{
-            variant: 'styles.h1',
-            textAlign: 'center',
-            margin: 0,
-            fontSize: ['38px', 6],
-            lineHeight: ['38px', '3.125rem']            
-        }}>
-            VINCENT NALUPTA
-            <br />
-            IS A UX ENGINEER
-        </h1>
-    )
-}
+const TitleWrapper = styled.div<{
+    $inView?: boolean;
+    }>`
+    position: relative;
+    transition: 500ms opacity ease-out, 150ms transform ease-out;         
+    opacity: 0;
+    transform: translate(10px, 10vh);
+    
+    ${props => props.$inView && `opacity: 1; transform: translate(0, 10vh);`}    
+`
+const Title = styled.h1`
+    text-align: center;
+    margin: 0;
+
+    @media (max-width: 540px) {
+        font-size: 38px;
+        line-height: 38px;
+    }
+`
+
 
 export default Jumbotron

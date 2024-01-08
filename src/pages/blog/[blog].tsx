@@ -1,8 +1,5 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
-
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 export default function BlogPost({ frontmatter, markdownBody }) {
     if (!frontmatter) return (<></>)
@@ -10,17 +7,19 @@ export default function BlogPost({ frontmatter, markdownBody }) {
     const { title, author, date } = frontmatter;
 
     return (
-            <main role="main" sx={{ width: ['100%', '100%', '768px'], variant: 'styles.layout' }}>
-                <section sx={{ marginTop: '100px'}}>
-                    <h1 sx={{
+            // <main role="main" style={{ width: ['100%', '100%', '768px'], variant: 'styles.layout' }}>
+            // figure out responsiveness
+            <main>
+                <section style={{ marginTop: '100px'}}>
+                    <h1 style={{
                         margin: '0 0 25px 0'
                     }}>
                         {title}
                     </h1>
 
-                    <ReactMarkdown source={markdownBody} />
+                    <Markdown>{markdownBody}</Markdown>
 
-                    <p sx={{ textAlign: 'left' }}>
+                    <p style={{ textAlign: 'left' }}>
                         {date}
                     </p>
                     

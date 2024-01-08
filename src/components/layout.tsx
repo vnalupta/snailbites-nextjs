@@ -1,15 +1,11 @@
-/** @jsx jsx */
-import { jsx, ThemeProvider } from 'theme-ui'
-
-import React, { ReactChild, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Transition from '@components/transition'
-import { BlogTheme, GlobalTheme } from '@theme/theme';
+import Transition from './transition'
 
 
 interface ILayoutProps {
-    children: ReactChild | ReactChild[];
+    children: ReactElement;
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {

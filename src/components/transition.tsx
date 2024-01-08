@@ -3,10 +3,8 @@ import {
     TransitionGroup,
     Transition as ReactTransition,
 } from "react-transition-group"
-import { ThemeProvider } from "theme-ui";
-import { GlobalTheme, BlogTheme } from '@theme/theme';
 import { useRouter } from "next/router";
-import { Colors } from "../theme/theme";
+import { ThemeProvider } from "styled-components";
 
 const DURATION = 200;
 
@@ -30,13 +28,13 @@ const transitionStyles = {
 
 const Transition = ({ children, location }) => {
     const router = useRouter();
-    const [theme, setTheme] = useState(GlobalTheme);
+    // const [theme, setTheme] = useState(GlobalTheme);
 
     useEffect(() => {
         // The location is one state behind
         // so that's why this is backwards
-        const theme = location === '/' ? GlobalTheme : BlogTheme     
-        setTheme(theme)     
+        // const theme = location === '/' ? GlobalTheme : BlogTheme     
+        // setTheme(theme)     
     }, [])
 
     return (
@@ -47,8 +45,8 @@ const Transition = ({ children, location }) => {
                 onExited={() => {
                     // The location is one state behind
                     // so that's why this is backwards
-                    const currTheme = location !== '/' ? GlobalTheme : BlogTheme;
-                    setTheme(currTheme);                    
+                    // const currTheme = location !== '/' ? GlobalTheme : BlogTheme;
+                    // setTheme(currTheme);                    
                 }}                
             >
                 {status => {
@@ -59,9 +57,9 @@ const Transition = ({ children, location }) => {
                                 ...transitionStyles[status],
                             }}
                         >
-                            <ThemeProvider theme={theme}>
+                            {/* <ThemeProvider theme={theme}>
                                 {children}
-                            </ThemeProvider>
+                            </ThemeProvider> */}
                         </div>
                     )
                 }}
@@ -78,27 +76,5 @@ export default Transition;
 //             ...defaultStyle,
 //             ...transitionStyles[props.status]
 //           }}>{props.children}</div>
-//     )
-// }
-
-// const FadeLink = props => {
-//     const target = props.target || null
-//     return (
-//         <TransitionLink 
-//             exit={{ 
-//                 delay: 0.35, 
-//                 length: 0.2 
-//             }}
-//             entry={{   
-//                 trigger: () => scrollHandler(target),             
-//                 delay: .2,
-//                 length: 0.2 
-//             }}
-//             to={props.to}
-//             onClick={props.onClick}
-//             state={props.state}
-//         >
-//             {props.children}
-//         </TransitionLink>
 //     )
 // }
